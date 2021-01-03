@@ -69,7 +69,7 @@ class Save extends Action
                 $this->resourceModel->load($model, $id); // load data from DB
             }
 
-            if($model->getStatus()) { // is status = disable
+            if(!$model->getStatus()) { // is status = disable
                 $model->setStatus($data['status']); // change only status
             } else {
                 $model->setData($data); // set data to the object

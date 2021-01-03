@@ -46,14 +46,14 @@ class Form extends Generic
             ],
           ]
         );
-        $form->setUseContainer(true); //TODO CHECK THIS FIELD
+        $form->setUseContainer(true);
 
         $model = $this->_coreRegistry->registry('learning_adminGrid_form_data');
         $isElementDisabled = false;
         $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('AdminGridInfo')]);
         if ($model->getId()) {
             $fieldset->addField('id', 'hidden', ['name' => 'id']);
-            $isElementDisabled = (bool)$model->getStatus();
+            $isElementDisabled = !(bool)$model->getStatus();
         }
 
         $fieldset->addField(
@@ -121,9 +121,6 @@ class Form extends Generic
             ]
         );
 
-        if (!$model->getId()) {
-            $model->setData('status', $isElementDisabled ? '0' : '1');
-        }
 
         $form->addValues($model->getData());
 

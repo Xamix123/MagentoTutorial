@@ -89,7 +89,6 @@ class Edit extends Action
         $this->_coreRegistry->register('learning_adminGrid_form_data', $model);
         $resultPage = $this->_initAction();
 
-        //TODO CHECK THIS METHODS
         $resultPage->getConfig()->getTitle()->prepend($model->getId() // check we have module id
             ? $model->getTitle() // if we have module id use Title like prefix
             : __('New Record')); // if we don`t have module id use phrase New Record

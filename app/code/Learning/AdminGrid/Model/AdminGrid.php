@@ -7,7 +7,13 @@ use Magento\Framework\Model\AbstractModel;
 
 class AdminGrid extends AbstractModel
 {
-    public const STATUSES_ARRAY = [0 => 'Enabled', 1 => 'Disabled'];
+    public const STATUS_DISABLE = 0;
+    public const STATUS_ENABLE = 1;
+
+    public const STATUSES_ARRAY = [
+        self::STATUS_DISABLE => 'Disabled',
+        self::STATUS_ENABLE => 'Enabled'
+    ];
 
     public function _construct()
     {

@@ -3,6 +3,7 @@
 namespace Learning\AdminGrid\Validator;
 
 use Learning\AdminGrid\Exception\FieldIsNotValidException;
+use Learning\AdminGrid\Model\AdminGrid;
 
 class GridDataValidator
 {
@@ -42,7 +43,7 @@ class GridDataValidator
      */
     private function validateStatus(string $status) : bool
     {
-        return preg_match('/^[0-1]$/', $status);
+        return array_key_exists($status,AdminGrid::STATUSES_ARRAY);
     }
 
     /**
@@ -53,10 +54,6 @@ class GridDataValidator
     public function validateData($object): bool
     {
         $data = $object->getData();
-
-        foreach ($data as $key => $value) {
-            $data[$key] = htmlentities($value);
-        }
 
         if (! $this->validateName($data['name'])) {
             throw new FieldIsNotValidException('name', 'Field name must contains only letters and

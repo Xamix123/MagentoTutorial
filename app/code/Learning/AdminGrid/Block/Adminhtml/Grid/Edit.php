@@ -7,7 +7,7 @@ use Magento\Backend\Block\Widget\Form\Container;
 use Magento\Framework\Phrase;
 use Magento\Framework\Registry;
 
-class Menu extends Container
+class Edit extends Container
 {
     //this Block created menu in add and edit data pages
 
