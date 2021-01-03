@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Learning_CarTutorial::test.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <update handle="cartutorial_car_delete"/>
+    <update handle="cartutorial_car_add"/>
+
+
+    <body>
+        <referenceContainer name="content">
+                <container name="testContainer" htmlTag="div" htmlId="testId">
+                    <block cacheable="false" class="Learning\CarTutorial\Block\Block1"   name="learning_block1" template="Learning_CarTutorial::block1.phtml" as ="block1">
+                        <block cacheable="false" class="Magento\Framework\View\Element\Text" name="textBlock" as="textBlock123">
+                            <arguments>
+                                <argument name="text" xsi:type="string">Some Custom Text</argument>
+                            </arguments>
+                        </block>
+                        <block cacheable="false" class="Learning\CarTutorial\Block\ChildBlock" name="learning_child" template="Learning_CarTutorial::child.phtml" as="child">
+                            <block cacheable="false" class="Learning\CarTutorial\Block\GrandSonBlock" name="learning_grandSon" template="Learning_CarTutorial::child.phtml" as="grandSon"/>
+                            <arguments>
+                                <argument name="testDisableArgument" xsi:type="string">I am test Argument from disable block</argument>
+                            </arguments>
+                        </block>
+
+                    </block>
+                    <block class="Magento\Framework\View\Element\Template" name="learning_carList" template="Learning_CarTutorial::list.phtml" as="carList">
+                        <arguments>
+                            <argument name="testArgument" xsi:type="string">I am test argument</argument>
+                            <argument name="viewModel" xsi:type="object">Learning\CarTutorial\ViewModel\Car</argument>
+                        </arguments>
+                    </block>
+                </container>
+        </referenceContainer>
+
+        <referenceBlock name="learning_carList" display="false" />
+    </body>
+</page>

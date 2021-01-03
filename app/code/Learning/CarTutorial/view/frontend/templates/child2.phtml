@@ -1,0 +1,13 @@
+<?php
+
+use Learning\CarTutorial\Block\ChildBlock;
+
+/** @var ChildBlock $block */
+
+$block2Data = $block->getChildBlock("child3");
+echo "i am here <br>";
+var_export($block2Data->getData());
+
+?>
+<p><?= $block->showBlockName() ?></p>
+

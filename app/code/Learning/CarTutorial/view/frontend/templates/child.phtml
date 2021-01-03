@@ -1,0 +1,19 @@
+<?php
+
+use Learning\CarTutorial\Block\Block2;
+use Learning\CarTutorial\Block\ChildBlock;
+
+/** @var ChildBlock $block */
+
+/** @var Block2 $block2 */
+
+$block->setChild("block2", "learning_block2");
+
+$block2 = $block->getChildBlock("block2");
+
+//var_export($block2->getBlockHtml("learning_block2"));
+
+
+?>
+<p><?= $block->showBlockName() ?></p>
+

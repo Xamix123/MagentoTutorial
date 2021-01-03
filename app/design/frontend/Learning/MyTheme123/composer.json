@@ -1,0 +1,16 @@
+{
+    "name": "learning/my-theme123",
+    "description": "N/A",
+    "require": {
+        "php": "~7.1.3||~7.2.0||~7.3.0",
+        "magento/theme-frontend-luma": "100.1.*",
+        "magento/framework": "102.0.*"
+    },
+    "type": "magento2-theme",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    },
+    "version": "1.0.0"
+}

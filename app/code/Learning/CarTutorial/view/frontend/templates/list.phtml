@@ -1,0 +1,13 @@
+<?php
+
+use Learning\CarTutorial\ViewModel\Car;
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+
+/** @var Car $viewModel*/
+$viewModel = $block->getData("viewModel");
+?>
+<?php foreach ($viewModel->getItems() as $item): ?>
+    <p><?= $item->toString() ?></p>
+<?php endforeach;?>

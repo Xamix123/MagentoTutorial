@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Learning_AdminGrid::view" title="Learning" module="Learning_AdminGrid" sortOrder="902" resource="Learning_AdminGrid::view"/>
+        <add id="Learning_AdminGrid::grid" title="Manage Blog Records" module="Learning_AdminGrid" sortOrder="10" parent="Learning_AdminGrid::view" action="admingrid/grid/index" resource="Learning_AdminGrid::grid"/>
+        <add id="Learning_AdminGrid::showSystemConf" title="Show System Config" module="Learning_AdminGrid" sortOrder="11" parent="Learning_AdminGrid::view" action="admingrid/grid/showsystemconfigaction" resource="Learning_AdminGrid::showSystemConf" />
+    </menu>
+</config>

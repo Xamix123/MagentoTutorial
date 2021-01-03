@@ -1,0 +1,40 @@
+<?php
+use Learning\CarTutorial\Block\Block1;
+use Learning\CarTutorial\Block\ChildBlock;
+use Learning\CarTutorial\ViewModel\Car;
+use Magento\Framework\View\Element\Template;
+
+/** @var Block1 $block */
+$block->setChild('carList', 'learning_carList');
+
+
+/** @var ChildBlock $childBlock */
+$childBlock = $block->getChildBlock('child');
+
+
+/** @var Template $carBlock */
+$carBlock = $block->getChildBlock('carList');
+
+/** @var Car $viewModel */
+$viewModel = $carBlock->getData('viewModel');
+
+$myDearFriend = 'MyDearFriend';
+
+$childData = $block->getChildData('carList');
+
+
+echo '<br>______________________________<br>';
+echo 'From Another Block: <br>';
+$html = $block->getBlockHtml('textBlock');
+var_export($html);
+
+echo '<br>______________________________<br>';
+echo 'From Child Block: <br>';
+$childHtml =  $block->getChildHtml('child');
+echo $childHtml;
+echo '<br>______________________________';
+
+?>
+
+<p ><?=$block->showBlockName() ?></p>
+<p ><?=$childBlock->showBlockName() ?></p>

@@ -1,0 +1,11 @@
+<?php
+
+use Learning\CarTutorial\ViewModel\Car;
+use Magento\Framework\View\Element\Template;
+/** @var Template $block */
+
+/** @var Car $viewModel */
+$viewModel = $block->getData('viewModel');
+
+?>
+<p ><?=$viewModel->addItem(["manufacturer" => "TestManufacturer987", "model" => "testModel987"]) ?></p>

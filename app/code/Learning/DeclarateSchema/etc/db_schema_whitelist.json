@@ -1,0 +1,40 @@
+{
+    "declarateSchemaTestTable": {
+        "column": {
+            "id": true,
+            "author_name": true,
+            "email": true,
+            "description": true,
+            "status": true,
+            "new_status": true,
+            "author_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_836E3924EB75AD16C92D382E287A078E": true
+        }
+    },
+    "declarateSchemaForeignKeyTable": {
+        "column": {
+            "id": true,
+            "author_name": true,
+            "email": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "custom_table": {
+        "column": {
+            "id": true,
+            "author_id": true,
+            "description": true,
+            "status": true,
+            "newNameStatus": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CUSTOM_TABLE_AUTHOR_ID_DECLARATESCHEMAFOREIGNKEYTABLE_ID": true
+        }
+    }
+}

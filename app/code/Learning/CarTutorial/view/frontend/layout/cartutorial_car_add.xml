@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Learning_CarTutorial::test.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <block before="content"  cacheable="false" class="Magento\Framework\View\Element\Messages" name="messageBlock"/>
+
+
+    <referenceContainer  display="true" name="content">
+        <block class="Magento\Framework\View\Element\Template" name="learning_carAdd" template="Learning_CarTutorial::add.phtml" >
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Learning\CarTutorial\ViewModel\Car</argument>
+            </arguments>
+        </block>
+        <block after="learning_carAdd" class="Learning\CarTutorial\Block\Block2" name="learning_block2" as="block2"/>
+        <block class="Learning\CarTutorial\Block\ChildBlock" name="learning_child" template="Learning_CarTutorial::child.phtml" as="learningChild" />
+    </referenceContainer>
+</page>
