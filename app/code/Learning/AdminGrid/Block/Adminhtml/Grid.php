@@ -33,10 +33,7 @@ class Grid extends Container
             'onclick' => "setLocation('" . $this->_getCreateUrl() . "')" // button url
         ];
         $this->buttonList->add('add_new', $addButtonProps); // add new button with id add_new
-        $this->setChild('grid', $this->getLayout()->createBlock(
-            'Learning\AdminGrid\Block\Adminhtml\Grid\Grid',
-            'grid.view.grid'
-        )); //set child to the grid block which we create here with type('Learning\AdminGrid\Block\Adminhtml\Grid\Grid') and name 'grid.view.grid'
+
         return parent::_prepareLayout();
     }
 

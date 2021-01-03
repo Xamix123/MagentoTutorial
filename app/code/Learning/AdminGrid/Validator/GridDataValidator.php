@@ -54,10 +54,6 @@ class GridDataValidator
     {
         $data = $object->getData();
 
-        foreach ($data as $key => $value) {
-            $data[$key] = htmlentities($value);
-        }
-
         if (! $this->validateName($data['name'])) {
             throw new FieldIsNotValidException('name', 'Field name must contains only letters and
             his length must be between 6 and 30 characters.');

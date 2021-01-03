@@ -1,3 +1,9 @@
-<?php echo $block->getGridHtml();
+<?php
+use Learning\AdminGrid\Block\Adminhtml\Grid;
+
+/** @var $block Grid */
+echo $block->getGridHtml();
+
+echo $block->getChildHtml('grid');
 
 
