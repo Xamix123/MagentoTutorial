@@ -45,7 +45,7 @@ class Grid extends Action
     {
         $resultRaw = $this->resultRawFactory->create(); // create Raw Object
         $blogHtml = $this->layoutFactory->create()->createBlock(
-            'Learning\AdminGrid\Block\Adminhtml\Grid\Grid',
+            'Learning\AdminGrid\Block\Adminhtml\Grid',
             'grid.view.grid'
         )->toHtml(); //create Block with type Learning\AdminGrid\Block\Adminhtml\Grid\Grid and name grid.view.grid
 
