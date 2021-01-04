@@ -2,13 +2,11 @@
 
 namespace Learning\AdminGrid\Block\Adminhtml;
 
-use Magento\Backend\Block\Widget\Button;
-use Magento\Backend\Block\Widget\Grid\Container;
 use Magento\Backend\Block\Widget\Context;
+use Magento\Backend\Block\Widget\Grid\Container;
 
 class Grid extends Container
 {
-
     public function __construct(
         Context $context,
         array $data = []
@@ -20,18 +18,9 @@ class Grid extends Container
     {
         //add Button
 
-        $this->_blockGroup = 'Learning_AdminGrid'; // set block group
         $this->_controller = 'Adminhtml_Grid'; // set controller
-
-        return parent::_prepareLayout();
-    }
-
-    /**
-     * @return string
-     */
-    protected function _getCreateUrl()
-    {
-        return $this->getUrl('admingrid/*/new'); // get create url
+        $this->_blockGroup = 'Learning\AdminGrid'; // set block group
+        parent::_construct();
     }
 
     /**
