@@ -1,13 +1,36 @@
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
+<div id="div1" class="div1"></div>
+<div data-mage-init='{"setId": {}}' id="div2" class="div2"></div>
+<div id="div3" class="div3"></div>
+<div id="div4" class="div4"></div>
+<div id="div5" class="div5"></div>
+<div id="div6" class="div6"></div>
+<div id="div7" class="div7"></div>
+<div id="div8" class="div8"></div>
+<div id="div9" class="div9"></div>
+<div id="div10" class="div10"></div>
+<div id="div11" class="div11"></div>
+<div id="div12" class="div12"></div>
 
+<script type="text/javascript">
+
+    require([
+            "jquery",
+            "setId"
+        ], function($) {
+        "use strict";
+        var div = $('#div1');
+
+        div.text(div.attr('id'))
+        div.click(function (){
+            console.log("Type: Function. Element id: " + div.attr('id'));
+        })
+
+        var div3 = Object(document.getElementById("div3"));
+        div3['innerText'] = div3['id'];
+        div3.addEventListener("click", function (){
+            console.log("Type: Object. Element id: " + this.id);
+        })
+
+
+    })
+</script>
