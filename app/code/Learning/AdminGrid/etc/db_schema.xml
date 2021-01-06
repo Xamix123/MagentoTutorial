@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="testAdminHtml" resource="default" engine="innodb" comment="testAdminHtml">
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="name"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="title"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255" comment="email"/>
+        <column xsi:type="varchar" name="description" nullable="false" length="255" comment="description"/>
+        <column xsi:type="smallint" name="status" nullable="false" comment="status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" comment="created_at"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+    </table>
+</schema>
