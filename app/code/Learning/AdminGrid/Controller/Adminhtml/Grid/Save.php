@@ -5,9 +5,9 @@ namespace Learning\AdminGrid\Controller\Adminhtml\Grid;
 use Carbon\Carbon;
 use Exception;
 use Learning\AdminGrid\Exception\FieldIsNotValidException;
+use Learning\AdminGrid\Model\AdminGrid;
 use Learning\AdminGrid\Model\AdminGridFactory;
 use Learning\AdminGrid\Model\ResourceModel\AdminGrid as ResourceModel;
-use Learning\AdminGrid\Model\AdminGrid;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\Auth\Session;
@@ -15,7 +15,6 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use RuntimeException;
-use function Composer\Autoload\getData;
 
 class Save extends Action
 {
@@ -71,12 +70,11 @@ class Save extends Action
                 $this->resourceModel->load($model, $id); // load data from DB
             }
 
-            if($model->getStatus() === AdminGrid::STATUS_DISABLE) { // is status = disable
+            if ($model->getStatus() === AdminGrid::STATUS_DISABLE) { // is status = disable
                 $model->setStatus($data['status']); // change only status
             } else {
                 $model->setData($data); // set data to the object
             }
-
 
             try {
                 $this->resourceModel->save($model); // save data in DB

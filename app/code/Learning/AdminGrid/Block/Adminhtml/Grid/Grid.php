@@ -2,8 +2,9 @@
 
 namespace Learning\AdminGrid\Block\Adminhtml\Grid;
 
-use Learning\AdminGrid\Model\AdminGridFactory;
 use Learning\AdminGrid\Model\AdminGrid;
+use Learning\AdminGrid\Model\AdminGridFactory;
+use Learning\AdminGrid\Model\ResourceModel\AdminGrid\CollectionFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Grid\Extended;
 use Magento\Backend\Helper\Data;
@@ -28,12 +29,15 @@ class Grid extends Extended
      */
     protected $moduleManager;
 
+    /** @var CollectionFactory $collectionFactory */
+    protected $collectionFactory;
 
     /**
      * Grid constructor.
      * @param Context $context
      * @param Data $backendHelper
      * @param AdminGridFactory $adminGridFactory
+     * @param CollectionFactory $collectionFactory
      * @param Manager $moduleManager
      * @param array $data
      */
@@ -41,11 +45,13 @@ class Grid extends Extended
         Context $context,
         Data $backendHelper,
         AdminGridFactory $adminGridFactory,
+        CollectionFactory $collectionFactory,
         Manager $moduleManager,
         array $data = []
     ) {
         $this->_adminGridFactory = $adminGridFactory;
         $this->moduleManager = $moduleManager;
+        $this->collectionFactory = $collectionFactory;
         parent::__construct($context, $backendHelper, $data);
     }
 
@@ -68,7 +74,7 @@ class Grid extends Extended
      */
     protected function _prepareCollection(): Grid
     {
-        $collection = $this->_adminGridFactory->create()->getCollection(); // create resource model by ResourceModel Factory and getCollection
+        $collection = $this->collectionFactory->create(); // create resource model by ResourceModel Factory and getCollection
         $this->setCollection($collection); // setCollection to $this object of (Magento\Backend\Block\Widget\Grid\Extended)
         parent::_prepareCollection();// call parent _prepareCollection method of class (Magento\Backend\Block\Widget\Grid\Extended)
         return $this;
