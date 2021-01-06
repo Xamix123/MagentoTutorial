@@ -3,7 +3,6 @@
 namespace Learning\AdminGrid\Block\Adminhtml\Grid;
 
 use Learning\AdminGrid\Model\AdminGrid;
-use Learning\AdminGrid\Model\AdminGridFactory;
 use Learning\AdminGrid\Model\ResourceModel\AdminGrid\CollectionFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Grid\Extended;
@@ -20,11 +19,6 @@ class Grid extends Extended
     //DI for $_status $_adminGridFactory and ModuleManager
 
     /**
-     * @var AdminGridFactory
-     */
-    protected $_adminGridFactory;
-
-    /**
      * @var Manager
      */
     protected $moduleManager;
@@ -36,7 +30,6 @@ class Grid extends Extended
      * Grid constructor.
      * @param Context $context
      * @param Data $backendHelper
-     * @param AdminGridFactory $adminGridFactory
      * @param CollectionFactory $collectionFactory
      * @param Manager $moduleManager
      * @param array $data
@@ -44,12 +37,10 @@ class Grid extends Extended
     public function __construct(
         Context $context,
         Data $backendHelper,
-        AdminGridFactory $adminGridFactory,
         CollectionFactory $collectionFactory,
         Manager $moduleManager,
         array $data = []
     ) {
-        $this->_adminGridFactory = $adminGridFactory;
         $this->moduleManager = $moduleManager;
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context, $backendHelper, $data);
@@ -156,7 +147,7 @@ class Grid extends Extended
                 ],
                 'filter' => false, // don`t have filter field on
                 'sortable' => false, //don`t sorting
-                'index' => 'stores' // TODO check this field
+                'index' => 'stores'
             ]
         );
 
@@ -172,7 +163,7 @@ class Grid extends Extended
                         'url' => [
                             'base' => 'admingrid/*/delete', // module name / *(route) / controller
                         ],
-                        'field' => 'id' // TODO check this field
+                        'field' => 'id'
                     ],
                 ],
                 'filter' => false, // don`t have filter field on
@@ -182,11 +173,6 @@ class Grid extends Extended
                 'column_css_class' => 'col-action', // css for column
             ]
         );
-
-        $block = $this->getLayout()->getBlock('grid.bottom.links'); // add bottom links for padding
-        if ($block) {
-            $this->setChild('grid.bottom.links', $block);
-        }
         return parent::_prepareColumns();
     }
 

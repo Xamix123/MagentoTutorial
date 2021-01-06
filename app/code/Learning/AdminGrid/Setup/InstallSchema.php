@@ -40,7 +40,7 @@ class InstallSchema implements InstallSchemaInterface
                 Table::TYPE_TEXT,
                 255,
                 [
-                    'nullable => false',
+                    'nullable' => false,
                 ],
                 'Name'
             )->addColumn(
@@ -48,7 +48,7 @@ class InstallSchema implements InstallSchemaInterface
                 Table::TYPE_TEXT,
                 '255',
                 [
-                    'nullable => false',
+                    'nullable' => false,
                 ],
                 'AdminGrid Title'
 
@@ -57,7 +57,7 @@ class InstallSchema implements InstallSchemaInterface
                 Table::TYPE_TEXT,
                 '255',
                 [
-                    'nullable => false',
+                    'nullable' => false,
                 ],
                 'AdminGrid email'
 

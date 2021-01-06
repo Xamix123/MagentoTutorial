@@ -18,7 +18,7 @@ class Grid extends Container
     {
         //add Button
 
-        $this->_controller = 'Adminhtml_Grid'; // set controller
+        $this->_controller = 'adminhtml_grid'; // set controller
         $this->_blockGroup = 'Learning\AdminGrid'; // set block group
         parent::_construct();
     }
@@ -26,7 +26,7 @@ class Grid extends Container
     /**
      * @return string
      */
-    public function getGridHtml()
+    public function getGridHtml(): string
     {
         return $this->getChildHtml('grid'); // get grid html
     }

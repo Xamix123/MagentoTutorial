@@ -10,12 +10,25 @@ class ShowSystemConfigAction extends Action
 {
     protected $helperData;
 
+    /**
+     * ShowSystemConfigAction constructor.
+     * @param Context $context
+     * @param Data $helperData
+     */
     public function __construct(
         Context $context,
         Data $helperData
     ) {
         $this->helperData = $helperData;
         return parent::__construct($context);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function _isAllowed(): bool
+    {
+        return $this->_authorization->isAllowed('Learning_AdminGrid::showsystemconfigaction');
     }
 
     public function execute()

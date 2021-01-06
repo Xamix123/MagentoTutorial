@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento/Backend/etc/menu.xsd">
-    <menu>
-        <add id="Learning_Blog::view" title="Learning Blog" module="Learning_Blog" sortOrder="901" resource="Learning_Blog::view"/>
-        <add id="Learning_Blog::grid" title="Manage Blog Records" module="Learning_Blog" sortOrder="10" parent="Learning_Blog::view" action="blog/grid/index" resource="Learning_Blog::view"/>
-    </menu>
-</config>

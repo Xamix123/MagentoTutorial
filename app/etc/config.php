@@ -241,7 +241,6 @@ return [
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
         'Learning_AdminGrid' => 1,
-        'Learning_Blog' => 1,
         'Learning_DeclarateSchema' => 1,
         'Learning_CarTutorialOld' => 1,
         'Learning_CarTutorial' => 1,
