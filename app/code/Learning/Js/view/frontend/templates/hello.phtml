@@ -1,52 +1,67 @@
-<div id="div1" class="div1"></div>
-<div data-mage-init='{"setId": {}}' id="div2" class="div2"></div>
-<div id="div3" class="div3"></div>
-<div data-mage-init='{"objectSetId": {}}' id="div4" class="div4"></div>
-<div id="div5" class="div5"></div>
-<div id="div6" class="div6"></div>
-<div id="div7" class="div7"></div>
-<div id="div8" class="div8"></div>
-<div id="div9" class="div9"></div>
-<div id="div10" class="div10"></div>
-<div id="div11" class="div11"></div>
-<div id="div12" class="div12"></div>
+<!-- date-mage-init -->
+<div data-mage-init='{"setId": {}}' id='div1' class='div1'>+</div> <!-- function -->
+<div data-mage-init='{"objectSetId": {}}' id='div2' class='div2'>+</div> <!-- object -->
+<div data-mage-init='{"widgetSetId": {}}' id='div3' class='div3'>+</div> <!-- widget -->
 
-<script type="text/javascript">
+<!-- text/javascript -->
+<div id='div4' class='div4'>-</div> <!-- function -->
+<div id='div5' class='div5'>-</div> <!-- object -->
+<div id='div6' class='div6'>-</div> <!-- widget -->
+
+<!-- text/x-magento-init with selector -->
+<div id='div7' class='div7'>+</div> <!-- function -->
+<div id='div8' class='div8'>+</div> <!-- object -->
+<div id='div9' class='div9'>+</div> <!-- widget -->
+
+<!-- text/x-magento-init without selector -->
+<div id='div10' class='div10'>+</div> <!-- function -->
+<div id='div11' class='div11'>+</div> <!-- object -->
+<div id='div12' class='div12'>+</div> <!-- widget -->
+
+<script type='text/javascript'>
 
     require([
-            "jquery",
-            "objectSetId",
-            "setId"
-        ], function($) {
-        "use strict";
-        var div = $('#div1');
+            'jquery',
+            'setIdTextJs',
+        ], function($, setIdTextJs) {
 
-        div.text(div.attr('id'))
-        div.click(function (){
-            console.log("Type: Function. Element id: " + div.attr('id'));
-        })
 
-        var div3 = document.getElementById("div3");
-        div3['innerText'] = div3['id'];
-        div3.addEventListener("click", function (){
-            console.log("Type: Object. Element id: " + this.id);
-        })
+
+
+        // var div = $('#div4');
+        //
+        // div.text(div.attr('id'))
+        // div.click(function (){
+        //     console.log('Type: Function. Element id: ' + div.attr('id'));
+        // })
+
+        // var div3 = document.getElementById('div3');
+        // div3['innerText'] = div3['id'];
+        // div3.addEventListener('click', function (){
+        //     console.log('Type: Object. Element id: ' + this.id);
+        // })
     })
 </script>
 
 
-<script type="text/x-magento-init">
+<script type='text/x-magento-init'>
         {
-            "#div5": {
+            "#div7": {
                 "setId": {}
             },
 
-            "#div7": {
+            "#div8": {
                 "objectSetId": {}
             },
 
+            "#div9": {
+                "widgetSetId": {}
+            },
+
             "*": {
-                "setIdWithoutSelector": {}
+                "setIdWithoutSelector": { "name": "#div10"},
+                "objectSetIdWithoutSelector": { "name": "#div11"},
+                "widgetSetIdWithoutSelector": { "name": "#div12"}
             }
         }
 </script>
