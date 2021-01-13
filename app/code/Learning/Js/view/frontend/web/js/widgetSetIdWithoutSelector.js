@@ -3,8 +3,7 @@ define([
     'jquery/ui'
 ], function($) {
     'use strict';
-
-    $.widget('learning.widgetSetId', {
+    $.widget('learning.widgetSetIdWithoutSelector', {
         _create: function () {
 
             var div = $(this.options.name);
@@ -17,5 +16,5 @@ define([
         }
     })
 
-    return $.learning.widgetSetId;
+    return $.learning.widgetSetIdWithoutSelector;
 })

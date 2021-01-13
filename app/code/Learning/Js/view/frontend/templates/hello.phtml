@@ -4,9 +4,9 @@
 <div data-mage-init='{"widgetSetId": {}}' id='div3' class='div3'>+</div> <!-- widget -->
 
 <!-- text/javascript -->
-<div id='div4' class='div4'>-</div> <!-- function -->
+<div id='div4' class='div4'>+</div> <!-- function -->
 <div id='div5' class='div5'>-</div> <!-- object -->
-<div id='div6' class='div6'>-</div> <!-- widget -->
+<div id='div6' class='div6'>+</div> <!-- widget -->
 
 <!-- text/x-magento-init with selector -->
 <div id='div7' class='div7'>+</div> <!-- function -->
@@ -22,25 +22,19 @@
 
     require([
             'jquery',
-            'setIdTextJs',
-        ], function($, setIdTextJs) {
+            'setIdWithoutSelector',
+            'objectSetIdWithoutSelector',
+            'widgetSetIdWithoutSelector'
+        ], function($, setIdWithoutSelector, objectSetIdWithoutSelector, widgetSetIdWithoutSelector) {
+
+        setIdWithoutSelector({'name':'#div4'});
+
+        objectSetIdWithoutSelector.objectSetIdWithoutSelector({'name':'#div5'})
+
+        widgetSetIdWithoutSelector({'name':'#div6'});
 
 
-
-
-        // var div = $('#div4');
-        //
-        // div.text(div.attr('id'))
-        // div.click(function (){
-        //     console.log('Type: Function. Element id: ' + div.attr('id'));
-        // })
-
-        // var div3 = document.getElementById('div3');
-        // div3['innerText'] = div3['id'];
-        // div3.addEventListener('click', function (){
-        //     console.log('Type: Object. Element id: ' + this.id);
-        // })
-    })
+    });
 </script>
 
 
