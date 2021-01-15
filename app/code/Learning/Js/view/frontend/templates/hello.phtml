@@ -24,14 +24,17 @@
             'jquery',
             'setIdWithoutSelector',
             'objectSetIdWithoutSelector',
-            'widgetSetIdWithoutSelector'
-        ], function($, setIdWithoutSelector, objectSetIdWithoutSelector, widgetSetIdWithoutSelector) {
+            'widgetSetIdWithoutSelector',
+            'underscoreTutorial'
+        ], function($, setIdWithoutSelector, objectSetIdWithoutSelector, widgetSetIdWithoutSelector, underscoreTutorial) {
 
         setIdWithoutSelector({'name':'#div4'});
 
         objectSetIdWithoutSelector.objectSetIdWithoutSelector({'name':'#div5'})
 
         widgetSetIdWithoutSelector({'name':'#div6'});
+
+        underscoreTutorial();
 
 
     });

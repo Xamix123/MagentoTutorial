@@ -9,6 +9,8 @@ let config = {
 
             'widgetSetId': 'Learning_Js/js/widgetSetId',
             'widgetSetIdWithoutSelector': 'Learning_Js/js/widgetSetIdWithoutSelector',
+
+            'underscoreTutorial': 'Learning_Js/js/underscoreTutorial'
         }
     }
 };
