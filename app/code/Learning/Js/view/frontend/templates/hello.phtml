@@ -1,11 +1,11 @@
 <!-- date-mage-init -->
-<div data-mage-init='{"setId": {}}' id='div1' class='div1'>+</div> <!-- function -->
+<div data-mage-init='{"functionSetId": {}}' id='div1' class='div1'>+</div> <!-- function -->
 <div data-mage-init='{"objectSetId": {}}' id='div2' class='div2'>+</div> <!-- object -->
 <div data-mage-init='{"widgetSetId": {}}' id='div3' class='div3'>+</div> <!-- widget -->
 
 <!-- text/javascript -->
 <div id='div4' class='div4'>+</div> <!-- function -->
-<div id='div5' class='div5'>-</div> <!-- object -->
+<div id='div5' class='div5'>+</div> <!-- object -->
 <div id='div6' class='div6'>+</div> <!-- widget -->
 
 <!-- text/x-magento-init with selector -->
@@ -22,17 +22,17 @@
 
     require([
             'jquery',
-            'setIdWithoutSelector',
-            'objectSetIdWithoutSelector',
-            'widgetSetIdWithoutSelector',
+            'functionSetId',
+            'objectSetId',
+            'widgetSetId',
             'underscoreTutorial'
-        ], function($, setIdWithoutSelector, objectSetIdWithoutSelector, widgetSetIdWithoutSelector, underscoreTutorial) {
+        ], function($, functionSetId, objectSetId, widgetSetId, underscoreTutorial) {
 
-        setIdWithoutSelector({'name':'#div4'});
+        functionSetId({'id':'div4'})
 
-        objectSetIdWithoutSelector.objectSetIdWithoutSelector({'name':'#div5'})
+        objectSetId.objectSetId({'id':'div5'})
 
-        widgetSetIdWithoutSelector({'name':'#div6'});
+        widgetSetId({'id':'div6'});
 
         underscoreTutorial();
 
@@ -44,7 +44,7 @@
 <script type='text/x-magento-init'>
         {
             "#div7": {
-                "setId": {}
+                "functionSetId": {}
             },
 
             "#div8": {
@@ -56,9 +56,9 @@
             },
 
             "*": {
-                "setIdWithoutSelector": { "name": "#div10"},
-                "objectSetIdWithoutSelector": { "name": "#div11"},
-                "widgetSetIdWithoutSelector": { "name": "#div12"}
+                "functionSetId": {"id": "div10"},
+                "objectSetId": {"id": "div11"},
+                "widgetSetId": { "id": "div12"}
             }
         }
 </script>

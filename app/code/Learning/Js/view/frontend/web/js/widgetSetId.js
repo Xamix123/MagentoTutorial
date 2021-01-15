@@ -6,10 +6,16 @@ define([
 
     $.widget('learning.widgetSetId', {
         _create: function () {
-           var id = this.element.attr('id');
+           var divName = '#';
+           var id = (this.element.attr('id') === undefined)
+               ? this.options.id
+               : this.element.attr('id')
 
-           this.element.text(id);
-           this.element.click(function (){
+           divName += id;
+           var div = $(divName);
+
+           div.text(id);
+           div.click(function (){
                console.log('Type: Widget. Element id: ' + id);
            })
         }
