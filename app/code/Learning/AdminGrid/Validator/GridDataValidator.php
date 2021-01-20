@@ -43,7 +43,7 @@ class GridDataValidator
      */
     private function validateStatus(string $status) : bool
     {
-        return array_key_exists($status,AdminGrid::STATUSES_ARRAY);
+        return array_key_exists($status, AdminGrid::STATUSES_ARRAY);
     }
 
     /**
