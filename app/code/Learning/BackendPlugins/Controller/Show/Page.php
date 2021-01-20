@@ -8,11 +8,11 @@ class Page extends Action
 {
     public function execute()
     {
-        $this->targetForPlugin();
+        $this->targetForPlugin("test");
     }
 
-    public function targetForPlugin()
+    public function targetForPlugin($name)
     {
-        echo "i am target for plugin (+)";
+        echo "i am target for plugin (+) - $name<br>";
     }
 }

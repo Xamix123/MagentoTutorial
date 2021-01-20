@@ -1,5 +1,7 @@
 <config>
     <type name="Learning\BackendPlugins\Controller\Show\Page">
+        <plugin name="AAAPlugin" type="Learning\BackendPlugins\Model\Plugin\AAAPlugin" sortOrder="1" disabled="false" />
         <plugin name="Plugin1" type="Learning\BackendPlugins\Model\Plugin\Plugin1" sortOrder="1" disabled="false" />
+        <plugin name="Plugin2" type="Learning\BackendPlugins\Model\Plugin\Plugin2" sortOrder="2" disabled="false" />
     </type>
 </config>

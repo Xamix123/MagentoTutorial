@@ -4,9 +4,9 @@ namespace Learning\BackendPlugins\Model\Plugin;
 
 use Learning\BackendPlugins\Controller\Show\Page;
 
-class Plugin1
+class Plugin2
 {
-    private $name = "Plugin1";
+    private $name = "Plugin2";
 
     public function beforeTargetForPlugin(Page $subject)
     {
