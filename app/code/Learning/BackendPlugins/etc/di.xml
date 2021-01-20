@@ -1,0 +1,5 @@
+<config>
+    <type name="Learning\BackendPlugins\Controller\Show\Page">
+        <plugin name="Plugin1" type="Learning\BackendPlugins\Model\Plugin\Plugin1" sortOrder="1" disabled="false" />
+    </type>
+</config>

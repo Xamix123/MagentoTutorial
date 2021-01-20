@@ -2,6 +2,6 @@
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'Learning_Js',
+    'Learning_BackendPlugins',
     __DIR__
 );
