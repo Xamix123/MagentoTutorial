@@ -1,4 +1,14 @@
-<config>
+<config  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Learning\BackendPlugins\Model\BackendPluginsInterface" type="Learning\BackendPlugins\Model\OverrideBackendPlugins"/>
+    <preference for="Learning\BackendPlugins\Model\OverrideBackendPlugins" type="Learning\BackendPlugins\Model\OverrideOverrideBackendPlugins"/>
+
+    <virtualType name="moduleConfig" type="Learning\BackendPlugins\Model\ModelA">
+        <arguments>
+            <argument name="type" xsi:type="string">system</argument>
+        </arguments>
+    </virtualType>
+
     <type name="Learning\BackendPlugins\Controller\Show\Page">
         <plugin name="AAAPlugin" type="Learning\BackendPlugins\Model\Plugin\AAAPlugin" sortOrder="1" disabled="false" />
         <plugin name="Plugin1" type="Learning\BackendPlugins\Model\Plugin\Plugin1" sortOrder="1" disabled="false" />

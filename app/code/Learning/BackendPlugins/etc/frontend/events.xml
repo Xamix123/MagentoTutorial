@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name = "learning_backendplugins_show_text">
+        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\MyObserver"/>
+        <observer name="AnotherObserverName" instance="Learning\BackendPlugins\Observer\AnotherObserver"/>
+    </event>
+    <event name = "learning_backendplugins_show_testevent">
+        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\AnotherObserver"/>
+    </event>
+    <event name = "learning_backendplugins_show_multipleTrigger">
+        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\MultipleTriggerObserver"/>
+    </event>
+</config>
