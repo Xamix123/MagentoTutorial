@@ -10,4 +10,6 @@
     <event name = "learning_backendplugins_show_multipleTrigger">
         <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\MultipleTriggerObserver"/>
     </event>
+
+
 </config>

@@ -1,17 +1,36 @@
 <config  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Learning\BackendPlugins\Model\BackendPluginsInterface" type="Learning\BackendPlugins\Model\OverrideBackendPlugins"/>
+    <preference for="Learning\BackendPlugins\Model\SomeTestInterface" type="Learning\BackendPlugins\Model\OverrideBackendPlugins"/>
     <preference for="Learning\BackendPlugins\Model\OverrideBackendPlugins" type="Learning\BackendPlugins\Model\OverrideOverrideBackendPlugins"/>
 
-    <virtualType name="moduleConfig" type="Learning\BackendPlugins\Model\ModelA">
+    <type name="Learning\BackendPlugins\Model\ModelA">
         <arguments>
-            <argument name="type" xsi:type="string">system</argument>
+            <argument name="arg1" xsi:type="string">Hello i am test arg1 string type parameter</argument>
+            <argument name="arg2" xsi:type="number">5</argument>
+            <argument name="arg3" xsi:type="number">15</argument>
         </arguments>
-    </virtualType>
+    </type>
 
     <type name="Learning\BackendPlugins\Controller\Show\Page">
         <plugin name="AAAPlugin" type="Learning\BackendPlugins\Model\Plugin\AAAPlugin" sortOrder="1" disabled="false" />
         <plugin name="Plugin1" type="Learning\BackendPlugins\Model\Plugin\Plugin1" sortOrder="1" disabled="false" />
         <plugin name="Plugin2" type="Learning\BackendPlugins\Model\Plugin\Plugin2" sortOrder="2" disabled="false" />
     </type>
+
+
+    <virtualType name="SomeVirtualType" type="Learning\CarTutorial\Model\Car"/>
+
+    <type name="Learning\BackendPlugins\Controller\Show\VirtualTest">
+        <arguments>
+            <argument name="backendPlugins" xsi:type="object">SomeVirtualType</argument>
+        </arguments>
+    </type>
+
+    <type name="Learning\BackendPlugins\Model\BackendPluginsInterface">
+        <plugin name="CreateTablePlugin" type="Learning\BackendPlugins\Model\Plugin\CreateTablePlugin"/>
+    </type>
+
+
+
+
 </config>

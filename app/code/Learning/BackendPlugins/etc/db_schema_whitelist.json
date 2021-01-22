@@ -1,0 +1,12 @@
+{
+    "testDataPlugin": {
+        "column": {
+            "id": true,
+            "description": true,
+            "title": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

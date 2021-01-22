@@ -242,6 +242,7 @@ return [
         'Klarna_Kp' => 1,
         'Learning_AdminGrid' => 1,
         'Learning_BackendPlugins' => 1,
+        'Learning_BackendTestVirtual' => 1,
         'Learning_Blog' => 1,
         'Learning_DeclarateSchema' => 1,
         'Learning_CarTutorialOld' => 1,

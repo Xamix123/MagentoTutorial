@@ -1,21 +1,15 @@
 <?php
 
-namespace Learning\CarTutorial\Model;
+namespace Learning\BackendPlugins\Model;
 
-use Learning\BackendPlugins\Model\BackendPluginsInterface;
-use Learning\CarTutorial\Model\ResourceModel\Car as ResourceModel;
+use Learning\BackendPlugins\Model\ResourceModel\BackendPlugins as ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 
-class Car extends AbstractModel implements BackendPluginsInterface
+class BackendPlugins extends AbstractModel implements BackendPluginsInterface
 {
-    protected function _construct()
+    public function _construct()
     {
         $this->_init(ResourceModel::class);
-    }
-
-    public function test()
-    {
-        echo " i am in car class";
     }
 
     public function getList()
@@ -29,7 +23,6 @@ class Car extends AbstractModel implements BackendPluginsInterface
     public function showItem($item)
     {
         foreach ($item->toArray() as $data) {
-
             echo '<td>' . $data . '</td>';
         }
     }

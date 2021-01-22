@@ -4,5 +4,6 @@ namespace Learning\BackendPlugins\Model;
 
 interface BackendPluginsInterface
 {
-    public function someFunction();
+    public function getList();
+    public function showItem($item);
 }
