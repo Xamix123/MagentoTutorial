@@ -27,6 +27,7 @@ class RepositoryMethods implements BackendPluginsInterface
     {
         $collection =  $object->getCollection();
         $fieldNames = $this->getFieldsName($collection);
+        $collection->addFieldToFilter($fieldNames, ['null' => true]);
         $this->eventManager->dispatch(
             'learning_backendplugins_model_getTableData',
             [
