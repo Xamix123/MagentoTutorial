@@ -2,11 +2,11 @@
 
 namespace Learning\CarTutorial\Model;
 
-use Learning\BackendPlugins\Model\BackendPluginsInterface;
+use Learning\BackendPlugins\Model\Interfaces\BackendModelObjectInterface;
 use Learning\CarTutorial\Model\ResourceModel\Car as ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 
-class Car extends AbstractModel implements BackendPluginsInterface
+class Car extends AbstractModel implements BackendModelObjectInterface
 {
     protected function _construct()
     {
@@ -18,19 +18,8 @@ class Car extends AbstractModel implements BackendPluginsInterface
         echo " i am in car class";
     }
 
-    public function getList()
+    public function getModelObject(): Car
     {
-        $collection = $this->getCollection();
-        foreach ($collection as $item) {
-            $this->showItem($item);
-        }
-    }
-
-    public function showItem($item)
-    {
-        foreach ($item->toArray() as $data) {
-
-            echo '<td>' . $data . '</td>';
-        }
+        return $this;
     }
 }

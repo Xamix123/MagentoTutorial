@@ -2,22 +2,13 @@
 
 namespace Learning\BackendPlugins\Model\Plugin;
 
-use Learning\BackendPlugins\Model\BackendPluginsInterface;
+use Learning\BackendPlugins\Model\Interfaces\BackendPluginsInterface;
 
 class CreateTablePlugin
 {
     public function beforeGetList(BackendPluginsInterface $subject)
     {
-        echo "<table border='1'>";
-    }
-
-    public function beforeShowItem(BackendPluginsInterface $subject)
-    {
-        echo "<tr>";
-    }
-    public function afterShowItem(BackendPluginsInterface $subject)
-    {
-        echo "</tr>";
+        echo "<table cellpadding='7' border='1'>";
     }
 
     public function afterGetList(BackendPluginsInterface $subject)
@@ -25,5 +16,13 @@ class CreateTablePlugin
         echo "</table>";
     }
 
+    public function beforeShowItem(BackendPluginsInterface $subject)
+    {
+        echo "<tr>";
+    }
 
+    public function afterShowItem(BackendPluginsInterface $subject)
+    {
+        echo "</tr>";
+    }
 }

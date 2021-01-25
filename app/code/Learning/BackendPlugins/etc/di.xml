@@ -1,6 +1,6 @@
 <config  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Learning\BackendPlugins\Model\SomeTestInterface" type="Learning\BackendPlugins\Model\OverrideBackendPlugins"/>
+    <preference for="Learning\BackendPlugins\Model\Interfaces\SomeTestInterface" type="Learning\BackendPlugins\Model\OverrideBackendPlugins"/>
     <preference for="Learning\BackendPlugins\Model\OverrideBackendPlugins" type="Learning\BackendPlugins\Model\OverrideOverrideBackendPlugins"/>
 
     <type name="Learning\BackendPlugins\Model\ModelA">
@@ -18,19 +18,23 @@
     </type>
 
 
-    <virtualType name="SomeVirtualType" type="Learning\CarTutorial\Model\Car"/>
+    <virtualType name="Virtual" type="Learning\CarTutorial\Model\Car"/>
+
+    <virtualType name="SomeVirtualType" type="Learning\BackendPlugins\Model\RepositoryMethods">
+        <arguments>
+            <argument name="customModel" xsi:type="object">Virtual</argument>
+            <argument name="eventManager" xsi:type="object">Magento\Framework\Event\ManagerInterface</argument>
+        </arguments>
+    </virtualType>
 
     <type name="Learning\BackendPlugins\Controller\Show\VirtualTest">
         <arguments>
-            <argument name="backendPlugins" xsi:type="object">SomeVirtualType</argument>
+            <argument name="repositoryMethods" xsi:type="object">SomeVirtualType</argument>
         </arguments>
     </type>
 
-    <type name="Learning\BackendPlugins\Model\BackendPluginsInterface">
+    <type name="Learning\BackendPlugins\Model\Interfaces\BackendPluginsInterface">
         <plugin name="CreateTablePlugin" type="Learning\BackendPlugins\Model\Plugin\CreateTablePlugin"/>
     </type>
-
-
-
 
 </config>

@@ -2,30 +2,27 @@
 
 namespace Learning\BackendPlugins\Controller\Show;
 
-use Learning\BackendPlugins\Model\BackendPluginsInterface;
+use Learning\BackendPlugins\Model\RepositoryMethods;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 
 class VirtualTest extends Action
 {
-    private $backendPlugins;
+    private $repositoryMethods;
 
-    public function __construct(Context $context, BackendPluginsInterface $backendPlugins)
+    public function __construct(Context $context, RepositoryMethods $repositoryMethods)
     {
-        $this->backendPlugins = $backendPlugins;
+        $this->repositoryMethods = $repositoryMethods;
         parent::__construct($context);
     }
 
     public function execute()
     {
-
         $this->testFunction();
-
-        echo "i am here and i doing nothing";
     }
 
     public function testFunction()
     {
-        $this->backendPlugins->getList();
+        $this->repositoryMethods->createTable();
     }
 }

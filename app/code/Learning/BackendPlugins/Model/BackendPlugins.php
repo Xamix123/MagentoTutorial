@@ -2,28 +2,19 @@
 
 namespace Learning\BackendPlugins\Model;
 
+use Learning\BackendPlugins\Model\Interfaces\BackendModelObjectInterface;
 use Learning\BackendPlugins\Model\ResourceModel\BackendPlugins as ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 
-class BackendPlugins extends AbstractModel implements BackendPluginsInterface
+class BackendPlugins extends AbstractModel implements BackendModelObjectInterface
 {
     public function _construct()
     {
         $this->_init(ResourceModel::class);
     }
 
-    public function getList()
+    public function getModelObject(): BackendPlugins
     {
-        $collection = $this->getCollection();
-        foreach ($collection as $item) {
-            $this->showItem($item);
-        }
-    }
-
-    public function showItem($item)
-    {
-        foreach ($item->toArray() as $data) {
-            echo '<td>' . $data . '</td>';
-        }
+        return $this;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Learning\BackendPlugins\Model;
 
-class OverrideBackendPlugins implements BackendPluginsInterface
+use Learning\BackendPlugins\Model\Interfaces\SomeTestInterface;
+
+class OverrideBackendPlugins implements SomeTestInterface
 {
     public function someFunction()
     {

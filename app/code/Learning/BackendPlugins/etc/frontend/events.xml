@@ -10,6 +10,9 @@
     <event name = "learning_backendplugins_show_multipleTrigger">
         <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\MultipleTriggerObserver"/>
     </event>
+    <event name = "learning_backendplugins_model_getTableData">
+        <observer name="FieldsTableName" instance="Learning\BackendPlugins\Observer\FieldsNameObserver"/>
+    </event>
 
 
 </config>

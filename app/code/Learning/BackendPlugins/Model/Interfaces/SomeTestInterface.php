@@ -1,6 +1,6 @@
 <?php
 
-namespace Learning\BackendPlugins\Model;
+namespace Learning\BackendPlugins\Model\Interfaces;
 
 interface SomeTestInterface
 {

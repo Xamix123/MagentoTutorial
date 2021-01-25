@@ -11,6 +11,3 @@ class BackendPlugins extends AbstractDb
         $this->_init('testDataPlugin', 'id');
     }
 }
-
-
-
