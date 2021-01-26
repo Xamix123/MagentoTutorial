@@ -2,7 +2,7 @@
 
 namespace Learning\CarTutorial\Model;
 
-use Learning\BackendPlugins\Model\Interfaces\BackendModelObjectInterface;
+use Learning\BackendPlugins\Model\Interfaces\Task4\BackendModelObjectInterface;
 use Learning\CarTutorial\Model\ResourceModel\Car as ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 

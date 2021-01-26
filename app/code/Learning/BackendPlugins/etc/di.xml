@@ -1,9 +1,11 @@
 <config  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <preference for="Learning\BackendPlugins\Model\Interfaces\SomeTestInterface" type="Learning\BackendPlugins\Model\OverrideBackendPlugins"/>
-    <preference for="Learning\BackendPlugins\Model\OverrideBackendPlugins" type="Learning\BackendPlugins\Model\OverrideOverrideBackendPlugins"/>
+    <!-- START :: 1 Task Preference and DiTest with arguments  -->
 
-    <type name="Learning\BackendPlugins\Model\ModelA">
+    <preference for="Learning\BackendPlugins\Model\Interfaces\Task1\SomeTestInterface" type="Learning\BackendPlugins\Model\Task1\OverrideBackendPlugins"/>
+    <preference for="Learning\BackendPlugins\Model\Task1\OverrideBackendPlugins" type="Learning\BackendPlugins\Model\Task1\OverrideOverrideBackendPlugins"/>
+
+    <type name="Learning\BackendPlugins\Model\Task1\ModelA">
         <arguments>
             <argument name="arg1" xsi:type="string">Hello i am test arg1 string type parameter</argument>
             <argument name="arg2" xsi:type="number">5</argument>
@@ -11,16 +13,20 @@
         </arguments>
     </type>
 
-    <type name="Learning\BackendPlugins\Controller\Show\Page">
-        <plugin name="AAAPlugin" type="Learning\BackendPlugins\Model\Plugin\AAAPlugin" sortOrder="1" disabled="false" />
-        <plugin name="Plugin1" type="Learning\BackendPlugins\Model\Plugin\Plugin1" sortOrder="1" disabled="false" />
-        <plugin name="Plugin2" type="Learning\BackendPlugins\Model\Plugin\Plugin2" sortOrder="2" disabled="false" />
-    </type>
+    <!-- END :: 1 Task Preference -->
 
+    <!-- START :: 2 Task Plugin -->
+        <type name="Learning\BackendPlugins\Controller\Show\Plugin">
+            <plugin name="AAAPlugin" type="Learning\BackendPlugins\Model\Plugin\Task2\AAAPlugin" sortOrder="1" disabled="false" />
+            <plugin name="Plugin1" type="Learning\BackendPlugins\Model\Plugin\Task2\Plugin1" sortOrder="1" disabled="false" />
+            <plugin name="Plugin2" type="Learning\BackendPlugins\Model\Plugin\Task2\Plugin2" sortOrder="2" disabled="false" />
+        </type>
+    <!-- END :: 2 Task Plugin -->
 
+    <!-- START :: 4 VirtualType -->
     <virtualType name="Virtual" type="Learning\CarTutorial\Model\Car"/>
 
-    <virtualType name="SomeVirtualType" type="Learning\BackendPlugins\Model\RepositoryMethods">
+    <virtualType name="SomeVirtualType" type="Learning\BackendPlugins\Model\Task4\RepositoryMethods">
         <arguments>
             <argument name="customModel" xsi:type="object">Virtual</argument>
             <argument name="eventManager" xsi:type="object">Magento\Framework\Event\ManagerInterface</argument>
@@ -33,8 +39,28 @@
         </arguments>
     </type>
 
-    <type name="Learning\BackendPlugins\Model\Interfaces\BackendPluginsInterface">
-        <plugin name="CreateTablePlugin" type="Learning\BackendPlugins\Model\Plugin\CreateTablePlugin"/>
+    <type name="Learning\BackendPlugins\Model\Interfaces\Task4\BackendPluginsInterface">
+        <plugin name="CreateTablePlugin" type="Learning\BackendPlugins\Model\Plugin\Task4\CreateTablePlugin"/>
+    </type>
+    <!-- END :: 4 VirtualType -->
+
+    <!-- START :: 5 Inheritance -->
+    <type name="Learning\BackendPlugins\Model\Task5\ParentModel">
+        <arguments>
+            <argument name="name" xsi:type="string">Parent Class</argument>
+            <argument name="someIntVal" xsi:type="number">123</argument>
+        </arguments>
     </type>
 
+    <type name="Learning\BackendPlugins\Model\Task5\ChildModel">
+        <arguments>
+            <argument name="name" xsi:type="string">Child Class</argument>
+            <argument name="someIntVal" xsi:type="number">231</argument>
+        </arguments>
+    </type>
+    <!-- END :: 5 Inheritance -->
+
+    <!-- START :: 6 SharedTutorial -->
+    <type name="Learning\BackendPlugins\Model\Task6\SharedTutorialModel" shared="false"/>
+    <!-- END :: 6  SharedTutorial -->
 </config>

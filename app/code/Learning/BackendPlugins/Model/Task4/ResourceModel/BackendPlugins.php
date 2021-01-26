@@ -1,6 +1,6 @@
 <?php
 
-namespace Learning\BackendPlugins\Model\ResourceModel;
+namespace Learning\BackendPlugins\Model\Task4\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 

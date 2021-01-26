@@ -1,8 +1,8 @@
 <?php
 
-namespace Learning\BackendPlugins\Model\Plugin;
+namespace Learning\BackendPlugins\Model\Plugin\Task4;
 
-use Learning\BackendPlugins\Model\Interfaces\BackendPluginsInterface;
+use Learning\BackendPlugins\Model\Interfaces\Task4\BackendPluginsInterface;
 
 class CreateTablePlugin
 {

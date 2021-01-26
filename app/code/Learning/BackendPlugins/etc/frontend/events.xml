@@ -1,18 +1,22 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- START :: 3 Task Observer -->
     <event name = "learning_backendplugins_show_text">
-        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\MyObserver"/>
-        <observer name="AnotherObserverName" instance="Learning\BackendPlugins\Observer\AnotherObserver"/>
+        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\Task3\MyObserver"/>
+        <observer name="AnotherObserverName" instance="Learning\BackendPlugins\Observer\Task3\AnotherObserver"/>
     </event>
     <event name = "learning_backendplugins_show_testevent">
-        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\AnotherObserver"/>
+        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\Task3\AnotherObserver"/>
     </event>
     <event name = "learning_backendplugins_show_multipleTrigger">
-        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\MultipleTriggerObserver"/>
+        <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\Task3\MultipleTriggerObserver"/>
     </event>
+    <!-- END :: 3 Task Observer -->
+    <!-- START :: 4 Task VirtualType -->
     <event name = "learning_backendplugins_model_getTableData">
-        <observer name="FieldsTableName" instance="Learning\BackendPlugins\Observer\FieldsNameObserver"/>
+        <observer name="FieldsTableName" instance="Learning\BackendPlugins\Observer\Task4\FieldsNameObserver"/>
     </event>
+    <!-- END :: 4 Task VirtualType -->
 
 
 </config>

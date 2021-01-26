@@ -5,7 +5,7 @@ namespace Learning\BackendPlugins\Controller\Show;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\DataObject;
 
-class Test extends Action
+class Observer extends Action
 {
     public function execute()
     {

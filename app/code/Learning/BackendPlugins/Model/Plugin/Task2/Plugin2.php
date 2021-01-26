@@ -1,26 +1,26 @@
 <?php
 
-namespace Learning\BackendPlugins\Model\Plugin;
+namespace Learning\BackendPlugins\Model\Plugin\Task2;
 
-use Learning\BackendPlugins\Controller\Show\Page;
+use Learning\BackendPlugins\Controller\Show\Plugin;
 
 class Plugin2
 {
     private $name = "Plugin2";
 
-    public function beforeTargetForPlugin(Page $subject)
+    public function beforeTargetForPlugin(Plugin $subject)
     {
         echo "i am plugin before target - $this->name<br> ";
     }
 
-    public function aroundTargetForPlugin(Page $subject, callable $next)
+    public function aroundTargetForPlugin(Plugin $subject, callable $next)
     {
         echo "i am plugin around before target - $this->name<br> ";
         $next($this->name);
         echo "i am plugin around after target - $this->name <br>";
     }
 
-    public function afterTargetForPlugin(Page $subject)
+    public function afterTargetForPlugin(Plugin $subject)
     {
         echo "i am plugin after target - $this->name <br>";
     }

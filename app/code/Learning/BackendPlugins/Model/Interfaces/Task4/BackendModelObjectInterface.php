@@ -1,6 +1,6 @@
 <?php
 
-namespace Learning\BackendPlugins\Model\Interfaces;
+namespace Learning\BackendPlugins\Model\Interfaces\Task4;
 
 interface BackendModelObjectInterface
 {

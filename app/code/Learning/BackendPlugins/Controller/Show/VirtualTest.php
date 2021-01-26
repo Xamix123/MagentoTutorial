@@ -2,7 +2,7 @@
 
 namespace Learning\BackendPlugins\Controller\Show;
 
-use Learning\BackendPlugins\Model\RepositoryMethods;
+use Learning\BackendPlugins\Model\Task4\RepositoryMethods;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 

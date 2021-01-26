@@ -1,6 +1,6 @@
 <config  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <virtualType name="CustomModelA"  type="Learning\BackendPlugins\Model\ModelA">
+    <virtualType name="CustomModelA"  type="Learning\BackendPlugins\Model\Test1\ModelA">
         <arguments>
             <argument name="arg1" xsi:type="string">Hello i am test arg1 string type parameter</argument>
             <argument name="arg2" xsi:type="string">Hello i am test arg2 string type parameter</argument>

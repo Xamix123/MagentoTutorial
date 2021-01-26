@@ -1,6 +1,6 @@
 <?php
 
-namespace Learning\BackendPlugins\Observer;
+namespace Learning\BackendPlugins\Observer\Task3;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Learning\BackendPlugins\Model;
+namespace Learning\BackendPlugins\Model\Task4;
 
-use Learning\BackendPlugins\Model\Interfaces\BackendModelObjectInterface;
+use Learning\BackendPlugins\Model\Interfaces\Task4\BackendModelObjectInterface;
 use Learning\BackendPlugins\Model\ResourceModel\BackendPlugins as ResourceModel;
 use Magento\Framework\Model\AbstractModel;
 

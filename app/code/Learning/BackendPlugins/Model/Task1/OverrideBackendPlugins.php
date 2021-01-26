@@ -1,8 +1,8 @@
 <?php
 
-namespace Learning\BackendPlugins\Model;
+namespace Learning\BackendPlugins\Model\Task1;
 
-use Learning\BackendPlugins\Model\Interfaces\SomeTestInterface;
+use Learning\BackendPlugins\Model\Interfaces\Task1\SomeTestInterface;
 
 class OverrideBackendPlugins implements SomeTestInterface
 {

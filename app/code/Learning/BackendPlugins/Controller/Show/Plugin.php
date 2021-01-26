@@ -4,7 +4,7 @@ namespace Learning\BackendPlugins\Controller\Show;
 
 use Magento\Framework\App\Action\Action;
 
-class Page extends Action
+class Plugin extends Action
 {
     public function execute()
     {

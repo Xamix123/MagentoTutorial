@@ -1,6 +1,6 @@
 <?php
 
-namespace Learning\BackendPlugins\Model;
+namespace Learning\BackendPlugins\Model\Task1;
 
 class ModelA
 {

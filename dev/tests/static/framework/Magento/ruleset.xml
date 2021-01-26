@@ -13,6 +13,6 @@
     <rule ref="Magento.Annotation">
         <exclude-pattern>*/_files/*</exclude-pattern>
         <exclude-pattern>*/Test/*</exclude-pattern>
-        <exclude-pattern>*Test.php</exclude-pattern>
+        <exclude-pattern>*Observer.php</exclude-pattern>
     </rule>
 </ruleset>

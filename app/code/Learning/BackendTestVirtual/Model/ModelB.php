@@ -2,19 +2,16 @@
 
 namespace Learning\BackendTestVirtual\Model;
 
-use Learning\BackendPlugins\Model\ModelA;
+use Learning\BackendPlugins\Model\Task6\SharedTutorialModel;
 
 class ModelB
 {
     private $arg1;
+    private $sharedTutorialModel;
 
-    public function __construct(ModelA $arg1)
-    {
-        $this->arg1 = $arg1;
-    }
-
-    public function test()
-    {
-        $this->arg1->someFunction();
+    public function __construct(
+        SharedTutorialModel $sharedTutorialModel
+    ) {
+        $this->sharedTutorialModel = $sharedTutorialModel;
     }
 }

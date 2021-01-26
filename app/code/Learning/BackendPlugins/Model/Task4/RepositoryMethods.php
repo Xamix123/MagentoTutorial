@@ -1,9 +1,9 @@
 <?php
 
-namespace Learning\BackendPlugins\Model;
+namespace Learning\BackendPlugins\Model\Task4;
 
-use Learning\BackendPlugins\Model\Interfaces\BackendModelObjectInterface;
-use Learning\BackendPlugins\Model\Interfaces\BackendPluginsInterface;
+use Learning\BackendPlugins\Model\Interfaces\Task4\BackendModelObjectInterface;
+use Learning\BackendPlugins\Model\Interfaces\Task4\BackendPluginsInterface;
 use Magento\Framework\Event\ManagerInterface as EventManager;
 
 class RepositoryMethods implements BackendPluginsInterface
@@ -11,6 +11,11 @@ class RepositoryMethods implements BackendPluginsInterface
     private $customModel;
     private $eventManager;
 
+    /**
+     * RepositoryMethods constructor.
+     * @param BackendModelObjectInterface $customModel
+     * @param EventManager $eventManager
+     */
     public function __construct(BackendModelObjectInterface $customModel, EventManager $eventManager)
     {
         $this->customModel = $customModel;
@@ -23,11 +28,14 @@ class RepositoryMethods implements BackendPluginsInterface
         $this->getList($modelObject);
     }
 
+    /**
+     * @param $object
+     */
     public function getList($object)
     {
         $collection =  $object->getCollection();
         $fieldNames = $this->getFieldsName($collection);
-        $collection->addFieldToFilter($fieldNames, ['null' => true]);
+        $this->removeEmptyFields($collection, $fieldNames);
         $this->eventManager->dispatch(
             'learning_backendplugins_model_getTableData',
             [
@@ -35,15 +43,29 @@ class RepositoryMethods implements BackendPluginsInterface
             ]
         );
 
-        foreach ($collection as $item) {
-            $this->showItem($item);
+        foreach ($collection as $row) {
+            $this->showItem($row->toArray());
         }
     }
 
-    public function showItem($item)
+    /**
+     * @param $row
+     */
+    public function showItem($row)
     {
-        foreach ($item->toArray() as $data) {
-            echo '<td>' . $data . '</td>';
+        foreach ($row as $item) {
+            echo '<td>' . $item . '</td>';
+        }
+    }
+
+    /**
+     * @param $collection
+     * @param $fieldNames
+     */
+    public function removeEmptyFields($collection, $fieldNames)
+    {
+        foreach ($fieldNames as $fieldName) {
+            $collection->addFieldToFilter($fieldName, ['neq' => null]);
         }
     }
 
