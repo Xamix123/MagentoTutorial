@@ -12,6 +12,7 @@
         <observer name="MyObserverName" instance="Learning\BackendPlugins\Observer\Task3\MultipleTriggerObserver"/>
     </event>
     <!-- END :: 3 Task Observer -->
+
     <!-- START :: 4 Task VirtualType -->
     <event name = "learning_backendplugins_model_getTableData">
         <observer name="FieldsTableName" instance="Learning\BackendPlugins\Observer\Task4\FieldsNameObserver"/>
