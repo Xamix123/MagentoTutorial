@@ -14,8 +14,7 @@ class MultipleTriggerObserver implements ObserverInterface
         $color = $observer->getData('color');
 
         $textColor = $observer->getData('textColor');
-
-        echo '<td bgcolor=' . $color . ' >' . $counter . '</td>';
+        echo '<td align="center" style="  color: ' . $textColor . '" bgcolor=' . $color . ' >' . $counter . '</td>';
 
         return $this;
     }

@@ -13,7 +13,7 @@ class FieldsNameObserver implements ObserverInterface
 
         echo '<tr bgcolor="#00008b">';
         foreach ($myEventData as $item) {
-            echo '<td>' . $item . '</td>';
+            echo '<td style="color: #FFFFFF">' . $item . '</td>';
         }
         echo '</tr>';
 
