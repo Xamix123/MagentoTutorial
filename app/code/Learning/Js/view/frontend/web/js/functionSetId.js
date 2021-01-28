@@ -1,19 +1,19 @@
 define([
     'jquery',
-], function($) {
+], function ($) {
     'use strict';
-    return function(config, element) {
-       var divName = '#';
+    return function (config, element) {
+        var divName = '#';
 
-       var id = (element === undefined) || (element === false) ? config['id'] : element.id;
+        var id = (element === undefined) || (element === false) ? config['id'] : element.id;
 
-       divName += id;
+        divName += id;
 
-       var div = $(divName);
+        var div = $(divName);
 
-       div.text(id)
-       div.click(function (){
-            console.log("Type: Function. Element id: " + id);
+        div.text(id)
+        div.click(function () {
+            console.log('Type: Function. Element id: ' + id);
         })
 
     }
