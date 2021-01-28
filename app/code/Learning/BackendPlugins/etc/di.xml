@@ -63,4 +63,14 @@
     <!-- START :: 6 SharedTutorial -->
     <type name="Learning\BackendPlugins\Model\Task6\SharedTutorialModel" shared="false"/>
     <!-- END :: 6  SharedTutorial -->
+
+    <!-- START :: 7 Plugin to Plugin -->
+    <type name="Learning\BackendPlugins\Controller\Show\Plugin">
+        <plugin name="TargetPlugin" type="Learning\BackendPlugins\Model\Plugin\Task7\TargetPlugin"/>
+    </type>
+
+    <type name="Learning\BackendPlugins\Model\Plugin\Task7\TargetPlugin">
+        <plugin name="PluginToPlugin" type="Learning\BackendPlugins\Model\Plugin\Task7\PluginToPlugin"/>
+    </type>
+    <!-- END:: -->
 </config>

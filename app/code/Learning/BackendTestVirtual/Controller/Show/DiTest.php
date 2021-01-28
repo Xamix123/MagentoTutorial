@@ -19,7 +19,6 @@ class DiTest extends Action
 
     public function execute()
     {
-        $this->modelB->test();
         echo " i am in virtualTest class";
     }
 }
