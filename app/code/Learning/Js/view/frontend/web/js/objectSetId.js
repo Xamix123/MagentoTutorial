@@ -16,10 +16,15 @@ define([
             var div = $(divName);
 
             div.text(id)
+
+            this.objectSetClick(div, id)
+
+        },
+        objectSetClick : function(div, id)
+        {
             div.click(function (){
                 console.log("Type: Object. Element id: " + id);
             })
-
         }
     };
 
