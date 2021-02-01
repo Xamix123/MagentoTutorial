@@ -12,7 +12,7 @@ class Material extends AbstractBackend
      * @return bool
      * @throws LocalizedException
      */
-    public function validate($object)
+    public function validate($object): bool
     {
         $value = $object->getData($this->getAttribute()->getAttributeCode());
         if (($object->getAttributeSetId() == 10) && ($value == 'wool')) {
