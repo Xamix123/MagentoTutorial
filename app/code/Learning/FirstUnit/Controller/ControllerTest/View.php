@@ -4,48 +4,51 @@
  */
 namespace Learning\FirstUnit\Controller\ControllerTest;
 
-use Learning\ProductTutorial\Api\ProductRepositoryInterface;
-use Magento\Framework\Api\Filter;
-use Magento\Framework\Api\Search\FilterGroup;
-use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 
 class View extends Action
 {
-    private $product;
+    private $productRepository;
 
     private $filter;
 
-    private $filterGroup;
-
-    private $searchCriteria;
+    private $searchCriteriaBuilder;
 
     public function __construct(
         Context $context,
-        ProductRepositoryInterface $product,
-        Filter $filter,
-        FilterGroup $filterGroup,
-        SearchCriteriaInterface $searchCriteria
+        ProductRepositoryInterface $productRepository,
+        FilterBuilder $filter,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
-        $this->product = $product;
+        $this->productRepository = $productRepository;
         $this->filter = $filter;
-        $this->filterGroup = $filterGroup;
-        $this->searchCriteria = $searchCriteria;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
 
         parent::__construct($context);
     }
 
     public function execute()
     {
-        $filter =  $this->filter->setField('name')
+        $filter = $this->filter->setField(ProductInterface::NAME)
                                 ->setValue('%test%')
-                                ->setConditionType('like');
+                                ->setConditionType('like')
+                                ->create();
 
-        $filterGroup = $this->filterGroup->setFilters([$filter]);
+        $this->searchCriteriaBuilder->addFilters([$filter]);
+        $this->searchCriteriaBuilder->setPageSize(20);
 
-        $this->searchCriteria->setFilterGroups([$filterGroup]);
+        $searchCriteria = $this->searchCriteriaBuilder->create();
 
-        $this->product->getList($this->searchCriteria);
+        $data = $this->productRepository->getList($searchCriteria)->getItems();
+
+        foreach ($data as $item) {
+            echo "Sku: " . $item->getSku() . " -  Name: " . $item->getName();
+            echo '<br>';
+        }
     }
 }
