@@ -4,6 +4,7 @@
  */
 namespace Learning\FirstUnit\Controller\ControllerTest;
 
+use Learning\CarTutorial\Api\CarRepositoryInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\FilterBuilder;
@@ -15,6 +16,8 @@ class View extends Action
 {
     private $productRepository;
 
+    private $carRepository;
+
     private $filter;
 
     private $searchCriteriaBuilder;
@@ -22,10 +25,12 @@ class View extends Action
     public function __construct(
         Context $context,
         ProductRepositoryInterface $productRepository,
+        CarRepositoryInterface $carRepository,
         FilterBuilder $filter,
         SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->productRepository = $productRepository;
+        $this->carRepository = $carRepository;
         $this->filter = $filter;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
 
@@ -34,6 +39,9 @@ class View extends Action
 
     public function execute()
     {
+
+        /* Task 1-5 get active product data*/
+        //---------------------------------------TASK 1-----------------------------------------------//
         $filter = $this->filter->setField(ProductInterface::NAME)
                                 ->setValue('%test%')
                                 ->setConditionType('like')
@@ -47,8 +55,11 @@ class View extends Action
         $data = $this->productRepository->getList($searchCriteria)->getItems();
 
         foreach ($data as $item) {
-            echo "Sku: " . $item->getSku() . " -  Name: " . $item->getName();
+            echo 'Sku: ' . $item->getSku() . ' -  Name: ' . $item->getName();
             echo '<br>';
         }
+        //---------------------------------------TASK 1-----------------------------------------------//
+
+        $this->carRepository->getList($searchCriteria);
     }
 }

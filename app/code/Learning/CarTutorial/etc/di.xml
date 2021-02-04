@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Learning\CarTutorial\Api\Data\CarInterface" type="Learning\CarTutorial\Model\Car" />
+    <preference for="Learning\CarTutorial\Api\Data\CarSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Learning\CarTutorial\Api\CarRepositoryInterface" type="Learning\CarTutorial\Model\CarRepository" />
+</config>
