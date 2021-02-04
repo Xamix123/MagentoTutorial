@@ -28,7 +28,7 @@ class ShowSystemConfigAction extends Action
      */
     protected function _isAllowed(): bool
     {
-        return $this->_authorization->isAllowed('Learning_AdminGrid::showSystemConf');
+        return $this->_authorization->isAllowed('Learning_AdminGrid::ShowSystemConfiguration');
     }
 
     public function execute()
