@@ -5,6 +5,7 @@
 namespace Learning\FirstUnit\Controller\ControllerTest;
 
 use Learning\CarTutorial\Api\CarRepositoryInterface;
+use Learning\CarTutorial\Api\Data\CarInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\FilterBuilder;
@@ -60,6 +61,34 @@ class View extends Action
         }
         //---------------------------------------TASK 1-----------------------------------------------//
 
-        $this->carRepository->getList($searchCriteria);
+
+        /* Work with custom Repository*/
+        //---------------------------------------TASK 2-----------------------------------------------//
+        $this->workWithCustomRepository();
+        //---------------------------------------TASK 2-----------------------------------------------//
+    }
+
+    /**
+     * function for work with custom Repository
+     */
+    public function workWithCustomRepository()
+    {
+        echo '<br> <strong>TASK 2</strong> <br>';
+        $newFilter = $this->filter->setField(CarInterface::MODEL)
+            ->setValue('%ford%')
+            ->setConditionType('like')
+            ->create();
+
+        $this->searchCriteriaBuilder->addFilters([$newFilter]);
+        $this->searchCriteriaBuilder->setPageSize(20);
+
+        $searchCriteriaCar = $this->searchCriteriaBuilder->create();
+
+        $data = $this->carRepository->getList($searchCriteriaCar)->getItems();
+
+        foreach ($data as $item) {
+            echo 'Model: ' . $item->getModel() . ' -  Manufacturer: ' . $item->getManufacturer();
+            echo '<br>';
+        }
     }
 }
