@@ -17,13 +17,11 @@ define([
 
            div.text(id);
 
-           this._click(div, id)
+            div.on('click', this._click)
 
         },
-        _click: function (div, id) {
-            div.click(function (){
-                console.log('Type: Widget. Element id: ' + id);
-            })
+        _click: function (event) {
+            console.log('Type: Widget. Element id: ' + event.toElement.id);
         }
     })
 
