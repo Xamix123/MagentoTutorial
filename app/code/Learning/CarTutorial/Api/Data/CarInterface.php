@@ -60,4 +60,8 @@ interface CarInterface
     public function setModel(string $model): CarInterface;
 
 
+    /**
+     * @return void
+     */
+    public function showCarData(): void;
 }

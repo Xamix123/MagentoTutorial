@@ -66,4 +66,12 @@ class Car extends AbstractModel implements CarInterface
     {
         return $this->getData(self::MODEL);
     }
+
+    /**
+     * @return void
+     */
+    public function showCarData(): void
+    {
+        echo $this->getId() . ' - ' . $this->getManufacturer() . ' ' . $this->getModel() . '<br>';
+    }
 }

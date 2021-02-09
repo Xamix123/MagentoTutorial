@@ -4,8 +4,10 @@
  */
 namespace Learning\FirstUnit\Controller\ControllerTest;
 
+use Exception;
 use Learning\CarTutorial\Api\CarRepositoryInterface;
 use Learning\CarTutorial\Api\Data\CarInterface;
+use Learning\CarTutorial\Model\CarFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\FilterBuilder;
@@ -19,6 +21,8 @@ class View extends Action
 
     private $carRepository;
 
+    private $carFactory;
+
     private $filter;
 
     private $searchCriteriaBuilder;
@@ -27,11 +31,13 @@ class View extends Action
         Context $context,
         ProductRepositoryInterface $productRepository,
         CarRepositoryInterface $carRepository,
+        CarFactory $carFactory,
         FilterBuilder $filter,
         SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->productRepository = $productRepository;
         $this->carRepository = $carRepository;
+        $this->carFactory = $carFactory;
         $this->filter = $filter;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
 
@@ -61,7 +67,6 @@ class View extends Action
         }
         //---------------------------------------TASK 1-----------------------------------------------//
 
-
         /* Work with custom Repository*/
         //---------------------------------------TASK 2-----------------------------------------------//
         $this->workWithCustomRepository();
@@ -73,22 +78,46 @@ class View extends Action
      */
     public function workWithCustomRepository()
     {
-        echo '<br> <strong>TASK 2</strong> <br>';
-        $newFilter = $this->filter->setField(CarInterface::MODEL)
-            ->setValue('%ford%')
-            ->setConditionType('like')
-            ->create();
+        try {
+            echo '<br> <strong>TASK 2</strong> <br>';
+            $newFilter = $this->filter->setField(CarInterface::MODEL)
+                ->setValue('%ford%')
+                ->setConditionType('like')
+                ->create();
 
-        $this->searchCriteriaBuilder->addFilters([$newFilter]);
-        $this->searchCriteriaBuilder->setPageSize(20);
+            $this->searchCriteriaBuilder->addFilters([$newFilter]);
+            $this->searchCriteriaBuilder->setPageSize(20);
 
-        $searchCriteriaCar = $this->searchCriteriaBuilder->create();
+            $searchCriteriaCar = $this->searchCriteriaBuilder->create();
 
-        $data = $this->carRepository->getList($searchCriteriaCar)->getItems();
+            echo 'GetData by id: ';
+            $dataById = $this->carRepository->getById(11);
+            $dataById->showCarData();
 
-        foreach ($data as $item) {
-            echo 'Model: ' . $item->getModel() . ' -  Manufacturer: ' . $item->getManufacturer();
-            echo '<br>';
+//            if ($this->carRepository->deleteById(10)) {
+//                echo 'Car was Delete Successfully<br>';
+//                $this->carRepository->getById(6);
+//            }
+
+            $car = $this->carFactory->create();
+
+            $car->setId(8);
+            $car->setModel($dataById->getModel());
+            $car->setManufacturer($dataById->getManufacturer());
+
+            if ($this->carRepository->save($car)) {
+                echo 'Car was Add Successfully<br>';
+                $this->carRepository->getById(11);
+            }
+            $data = $this->carRepository->getList($searchCriteriaCar);
+
+            foreach ($data->getItems() as $item) {
+                echo 'ID:' . $item->getId() . ' - Model: ' . $item->getModel()
+                    . ' -  Manufacturer: ' . $item->getManufacturer();
+                echo '<br>';
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 }
