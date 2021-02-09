@@ -21,7 +21,7 @@ define([
 
         },
         _click: function (event) {
-            console.log('Type: Widget. Element id: ' + event.toElement.id);
+            console.log('Type: Widget. Element id: ' + event.target.id);
         }
     })
 
