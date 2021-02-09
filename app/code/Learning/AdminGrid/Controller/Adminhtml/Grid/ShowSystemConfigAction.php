@@ -8,6 +8,12 @@ use Magento\Backend\App\Action\Context;
 
 class ShowSystemConfigAction extends Action
 {
+
+    /**
+     * Authorization level of a basic admin session
+     */
+    const ADMIN_RESOURCE = 'Learning_AdminGrid::ShowSystemConfiguration';
+
     protected $helperData;
 
     /**
@@ -28,7 +34,7 @@ class ShowSystemConfigAction extends Action
      */
     protected function _isAllowed(): bool
     {
-        return $this->_authorization->isAllowed('Learning_AdminGrid::ShowSystemConfiguration');
+        return parent::_isAllowed();
     }
 
     public function execute()
