@@ -24,7 +24,7 @@
     <!-- END :: 2 Task Plugin -->
 
     <!-- START :: 4 VirtualType -->
-    <virtualType name="Virtual" type="Learning\CarTutorial\Model\Car"/>
+    <virtualType name="Virtual" type="Learning\BackendPlugins\Model\Task4\BackendPlugins"/>
 
     <virtualType name="SomeVirtualType" type="Learning\BackendPlugins\Model\Task4\RepositoryMethods">
         <arguments>
