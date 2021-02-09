@@ -61,7 +61,7 @@
     <!-- END :: 5 Inheritance -->
 
     <!-- START :: 6 SharedTutorial -->
-    <type name="Learning\BackendPlugins\Model\Task6\SharedTutorialModel" shared="false"/>
+    <type name="Learning\BackendPlugins\Model\Task6\SharedTutorialModel" shared="true"/>
     <!-- END :: 6  SharedTutorial -->
 
     <!-- START :: 7 Plugin to Plugin -->
