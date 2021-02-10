@@ -244,6 +244,7 @@ return [
         'Learning_DeclarateSchema' => 1,
         'Learning_CarTutorialOld' => 1,
         'Learning_ClothingMaterial' => 1,
+        'Learning_CustomLogger' => 1,
         'Learning_CarTutorial' => 1,
         'Learning_Faq' => 1,
         'Learning_FirstUnit' => 1,
