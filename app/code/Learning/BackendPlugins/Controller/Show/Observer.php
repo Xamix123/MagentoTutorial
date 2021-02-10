@@ -30,13 +30,13 @@ class Observer extends Action
         echo '<br>________________________________________________<br>';
         echo '<table>';
         echo '<tr>';
-        for ($i = 1; $i<=64; $i++) {
+        for ($i = 1; $i <= 64; $i++) {
             $this->_eventManager->dispatch(
                 'learning_backendplugins_show_multipleTrigger',
                 [
-                    'counter' => $i,
-                    'color' => $i % 2 == 0 ? $color[0] : $color[1],
-                    'textColor' => $i % 2 == 0 ? $color[1] : $color[0]
+                        'counter' => $i,
+                        'color' => $i % 2 == 0 ? $color[0] : $color[1],
+                        'textColor' => $i % 2 == 0 ? $color[1] : $color[0]
                     ]
             );
             if ($i % 8 == 0) {

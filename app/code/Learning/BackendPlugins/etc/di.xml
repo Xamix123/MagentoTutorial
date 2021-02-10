@@ -72,5 +72,11 @@
     <type name="Learning\BackendPlugins\Model\Plugin\Task7\TargetPlugin">
         <plugin name="PluginToPlugin" type="Learning\BackendPlugins\Model\Plugin\Task7\PluginToPlugin"/>
     </type>
-    <!-- END:: -->
+    <!-- END :: -->
+
+    <!-- START :: 8 Parameter Plugin !-->
+    <type name="Learning\BackendPlugins\Controller\Show\PluginParameter">
+        <plugin name="TargetPluginParameter" type="Learning\BackendPlugins\Model\Plugin\Task8\TargetPluginParameter" />
+    </type>
+    <!-- END :: -->
 </config>
