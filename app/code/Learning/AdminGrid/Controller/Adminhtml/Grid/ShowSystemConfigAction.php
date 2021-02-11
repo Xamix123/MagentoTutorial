@@ -29,14 +29,6 @@ class ShowSystemConfigAction extends Action
         return parent::__construct($context);
     }
 
-    /**
-     * @return bool
-     */
-    protected function _isAllowed(): bool
-    {
-        return parent::_isAllowed();
-    }
-
     public function execute()
     {
         echo $this->helperData->getGeneralConfig('enable');
