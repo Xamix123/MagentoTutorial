@@ -72,11 +72,19 @@
     <type name="Learning\BackendPlugins\Model\Plugin\Task7\TargetPlugin">
         <plugin name="PluginToPlugin" type="Learning\BackendPlugins\Model\Plugin\Task7\PluginToPlugin"/>
     </type>
-    <!-- END :: -->
+    <!-- END :: Plugin to Plugin -->
 
     <!-- START :: 8 Parameter Plugin !-->
     <type name="Learning\BackendPlugins\Controller\Show\PluginParameter">
         <plugin name="TargetPluginParameter" type="Learning\BackendPlugins\Model\Plugin\Task8\TargetPluginParameter" />
     </type>
-    <!-- END :: -->
+    <!-- END :: Parameter Plugin -->
+
+    <!-- START :: 9 Proxies -->
+    <type name="Learning\BackendPlugins\Model\Task9\FastLoading">
+        <arguments>
+            <argument name="slowLoading" xsi:type="object">Learning\BackendPlugins\Model\Task9\SlowLoading\Proxy</argument>
+        </arguments>
+    </type>
+    <!-- END :: Proxies -->
 </config>
