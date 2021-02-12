@@ -25,7 +25,7 @@
                 <item name="manufacturer" xsi:type="string">manufacturer</item>
             </argument>
             <argument name="defaultOrders" xsi:type="array">
-                <item name="id" xsi:type="string">ASC</item>
+                <item name="car_id" xsi:type="string">ASC</item>
             </argument>
         </arguments>
     </virtualType>
