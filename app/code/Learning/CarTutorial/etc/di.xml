@@ -3,4 +3,47 @@
     <preference for="Learning\CarTutorial\Api\Data\CarInterface" type="Learning\CarTutorial\Model\Car" />
     <preference for="Learning\CarTutorial\Api\Data\CarSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
     <preference for="Learning\CarTutorial\Api\CarRepositoryInterface" type="Learning\CarTutorial\Model\CarRepository" />
+
+    <virtualType name="CarFilterProcessor" type="Magento\Eav\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="car_id" xsi:type="object">Learning\CarTutorial\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\CarFilter</item>
+            </argument>
+            <argument name="fieldMapping" xsi:type="array">
+                <item name="car_id" xsi:type="string">car_id</item>
+                <item name="model" xsi:type="string">model</item>
+                <item name="manufacturer" xsi:type="string">manufacturer</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CarSortingProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="array">
+                <item name="car_id" xsi:type="string">car_id</item>
+                <item name="model" xsi:type="string">model</item>
+                <item name="manufacturer" xsi:type="string">manufacturer</item>
+            </argument>
+            <argument name="defaultOrders" xsi:type="array">
+                <item name="id" xsi:type="string">ASC</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="collectionProcessor" type="Magento\Eav\Model\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">CarFilterProcessor</item>
+                <item name="sorting" xsi:type="object">CarSortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Learning\CarTutorial\Model\CarRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">collectionProcessor</argument>
+        </arguments>
+    </type>
+
 </config>

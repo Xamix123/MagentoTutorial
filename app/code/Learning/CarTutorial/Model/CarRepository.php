@@ -11,6 +11,7 @@ use Learning\CarTutorial\Model\ResourceModel\Car\Collection;
 use Learning\CarTutorial\Model\ResourceModel\Car\CollectionFactory as CarCollectionFactory;
 use Learning\CarTutorial\Model\ResourceModel\CarFactory as ResourceModelFactory;
 
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 class CarRepository implements CarRepositoryInterface
@@ -23,16 +24,23 @@ class CarRepository implements CarRepositoryInterface
 
     private $searchResultsFactory;
 
+    /**
+     * @var CollectionProcessorInterface
+     **/
+    private $collectionProcessor;
+
     public function __construct(
         CarFactory $carFactory,
         ResourceModelFactory $resourceCarFactory,
         CarCollectionFactory $collectionFactory,
-        CarSearchResultsInterfaceFactory $searchResultsFactory
+        CarSearchResultsInterfaceFactory $searchResultsFactory,
+        CollectionProcessorInterface $collectionProcessor = null
     ) {
         $this->carFactory = $carFactory;
         $this->resourceCarFactory = $resourceCarFactory;
         $this->collectionFactory = $collectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
+        $this->collectionProcessor = $collectionProcessor ?: $this->getCollectionProcessor();
     }
 
     /**
@@ -96,7 +104,7 @@ class CarRepository implements CarRepositoryInterface
     {
         $collection = $this->collectionFactory->create();
 
-        $this->addFiltersToCollection($searchCriteria, $collection);
+        $this->getCollectionProcessor()->process($searchCriteria, $collection);
 
         $collection->load();
 
@@ -107,6 +115,16 @@ class CarRepository implements CarRepositoryInterface
         $searchResult->setTotalCount($collection->getSize());
 
         return $searchResult;
+    }
+
+    private function getCollectionProcessor(): CollectionProcessorInterface
+    {
+        if (!$this->collectionProcessor) {
+            $this->collectionProcessor = \Magento\Framework\App\ObjectManager::getInstance()->get(
+                'Magento\Eav\Model\Api\SearchCriteria\CollectionProcessor'
+            );
+        }
+        return $this->collectionProcessor;
     }
 
     private function addFiltersToCollection(SearchCriteriaInterface $searchCriteria, Collection $collection)
