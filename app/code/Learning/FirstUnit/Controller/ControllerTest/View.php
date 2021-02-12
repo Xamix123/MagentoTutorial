@@ -7,6 +7,7 @@ namespace Learning\FirstUnit\Controller\ControllerTest;
 use Exception;
 use Learning\CarTutorial\Api\CarRepositoryInterface;
 use Learning\CarTutorial\Api\Data\CarInterface;
+use Learning\CarTutorial\Model\Car;
 use Learning\CarTutorial\Model\CarFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -46,7 +47,6 @@ class View extends Action
 
     public function execute()
     {
-
         /* Task 1-5 get active product data*/
         //---------------------------------------TASK 1-----------------------------------------------//
         $filter = $this->filter->setField(ProductInterface::NAME)
@@ -94,20 +94,19 @@ class View extends Action
             $dataById = $this->carRepository->getById(11);
             $dataById->showCarData();
 
+//            Delete functionality
+//
 //            if ($this->carRepository->deleteById(10)) {
 //                echo 'Car was Delete Successfully<br>';
-//                $this->carRepository->getById(6);
 //            }
 
+            /** @var CarInterface $car */
             $car = $this->carFactory->create();
-
-            $car->setId(8);
-            $car->setModel($dataById->getModel());
+            $car->setModel("testABCFord");
             $car->setManufacturer($dataById->getManufacturer());
 
             if ($this->carRepository->save($car)) {
-                echo 'Car was Add Successfully<br>';
-                $this->carRepository->getById(11);
+                echo 'Car Added Successfully<br>';
             }
             $data = $this->carRepository->getList($searchCriteriaCar);
 

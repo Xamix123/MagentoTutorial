@@ -53,13 +53,12 @@ class CarRepository implements CarRepositoryInterface
     }
 
     /**
-     * @param Car $car
-     * @return bool|void
+     * @param CarInterface $car
+     * @return bool
      * @throws Exception
      */
-    public function save(Car $car)
+    public function save(CarInterface $car): bool
     {
-        var_export($car->getData());
         $resourceCar = $this->resourceCarFactory->create();
         try {
             $resourceCar->save($car);
@@ -75,7 +74,7 @@ class CarRepository implements CarRepositoryInterface
      * @return bool
      * @throws Exception
      */
-    public function deleteById($id)
+    public function deleteById($id): bool
     {
         $car = $this->carFactory->create();
 

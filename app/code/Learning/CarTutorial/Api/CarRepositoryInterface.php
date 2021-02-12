@@ -4,7 +4,6 @@ namespace Learning\CarTutorial\Api;
 
 use Learning\CarTutorial\Api\Data\CarInterface;
 use Learning\CarTutorial\Api\Data\CarSearchResultsInterface;
-use Learning\CarTutorial\Model\Car;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface CarRepositoryInterface
@@ -17,10 +16,10 @@ interface CarRepositoryInterface
     public function getById($id);
 
     /**
-     * @param Car $car
+     * @param CarInterface $car
      * @return bool
      */
-    public function save(Car $car);
+    public function save(CarInterface $car): bool;
 
     /**
      * @param $id
