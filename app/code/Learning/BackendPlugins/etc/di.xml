@@ -80,7 +80,7 @@
     </type>
     <!-- END :: Parameter Plugin -->
 
-    <!-- START :: 9 Proxies -->
+    <!-- START :: 10 Proxies -->
     <type name="Learning\BackendPlugins\Model\Task9\FastLoading">
         <arguments>
             <argument name="slowLoading" xsi:type="object">Learning\BackendPlugins\Model\Task9\SlowLoading\Proxy</argument>

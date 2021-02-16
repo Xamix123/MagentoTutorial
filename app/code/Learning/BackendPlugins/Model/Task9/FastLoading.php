@@ -2,14 +2,18 @@
 
 namespace Learning\BackendPlugins\Model\Task9;
 
+use Learning\BackendPlugins\Model\Task9\SlowLoading\Proxy;
+
 class FastLoading
 {
+
     protected $slowLoading;
 
     public function __construct(
-        SlowLoading $slowLoading
+        Proxy $slowLoading
     ) {
         $this->slowLoading = $slowLoading;
+        var_dump($slowLoading);
     }
 
     /**
@@ -27,5 +31,4 @@ class FastLoading
     {
         return $this->slowLoading->getValue();
     }
-
 }

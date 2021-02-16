@@ -6,6 +6,7 @@ class SlowLoading
 {
     public function __construct()
     {
+        var_export("i am here");
     }
 
     /**
