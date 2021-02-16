@@ -20,7 +20,6 @@ define([
 
         },
         objectSetClick: function (event) {
-            console.log(event);
             console.log('Type: Object. Element id: ' + event.target.id);
         }
     };
