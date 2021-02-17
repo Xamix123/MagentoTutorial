@@ -9,7 +9,6 @@ namespace Learning\ClothingMaterial\Setup;
 use Exception;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
-use Magento\Cms\Model\Block;
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Model\Config;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
@@ -17,7 +16,6 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * @codeCoverageIgnore
