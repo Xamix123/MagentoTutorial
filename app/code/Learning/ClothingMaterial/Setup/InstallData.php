@@ -6,9 +6,11 @@
 
 namespace Learning\ClothingMaterial\Setup;
 
+use Exception;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
-use Magento\Customer\Api\AddressMetadataInterface;
+use Magento\Customer\Model\Customer;
+use Magento\Eav\Model\Config;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallDataInterface;
@@ -22,7 +24,10 @@ class InstallData implements InstallDataInterface
 {
     const CUSTOM_PRODUCT_ATTRIBUTE_CODE = 'clothing_material';
     const CUSTOM_CATEGORY_ATTRIBUTE_CODE = 'test_category_attribute';
+    const CUSTOM_CATEGORY_UI_ATTRIBUTE_CODE = 'test_customer_ui_attribute';
     const CUSTOM_CUSTOMER_ATTRIBUTE_CODE = 'test_customer_attribute';
+
+    private $eavConfig;
 
     /**
      * Eav setup factory
@@ -33,10 +38,14 @@ class InstallData implements InstallDataInterface
     /**
      * Init
      * @param EavSetupFactory $eavSetupFactory
+     * @param Config $eavConfig
      */
-    public function __construct(EavSetupFactory $eavSetupFactory)
-    {
+    public function __construct(
+        EavSetupFactory $eavSetupFactory,
+        Config $eavConfig
+    ) {
         $this->eavSetupFactory = $eavSetupFactory;
+        $this->eavConfig = $eavConfig;
     }
 
     /**
@@ -44,6 +53,7 @@ class InstallData implements InstallDataInterface
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @throws Exception
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
@@ -86,18 +96,48 @@ class InstallData implements InstallDataInterface
             ]
         );
 
+        /* ui component eav attribute for category */
+
         $eavSetup->addAttribute(
-            AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
+            Category::ENTITY,
+            self::CUSTOM_CATEGORY_UI_ATTRIBUTE_CODE,
+            [
+                'type' => 'int',
+                'label' => 'Ui Component test category attribute',
+                'input' => 'boolean',
+                'source'   => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+                'visible' => true,
+                'default' => '0',
+                'required' => false,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'Display Settings'
+          ]
+        );
+
+        $eavSetup->addAttribute(
+            Customer::ENTITY,
             self::CUSTOM_CUSTOMER_ATTRIBUTE_CODE,
             [
-                'label' => 'Custom',
+                'label' => 'Customer attribute',
                 'input' => 'text',
                 'visible' => true,
                 'required' => false,
                 'position' => 150,
                 'sort_order' => 150,
-                'user_defined' => true
+                'system' => false
             ]
         );
+
+        $customerAttribute = $this->eavConfig->getAttribute(
+            Customer::ENTITY,
+            self::CUSTOM_CUSTOMER_ATTRIBUTE_CODE
+        );
+
+        $customerAttribute->setData(
+            'used_in_forms',
+            ['adminhtml_customer']
+        );
+
+        $customerAttribute->save();
     }
 }
