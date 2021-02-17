@@ -12,6 +12,7 @@ use Learning\CarTutorial\Model\CarFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\Search\FilterGroupBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -24,7 +25,9 @@ class View extends Action
 
     private $carFactory;
 
-    private $filter;
+    private $filterBuilder;
+
+    private $filterGroupBuilder;
 
     private $searchCriteriaBuilder;
 
@@ -33,13 +36,15 @@ class View extends Action
         ProductRepositoryInterface $productRepository,
         CarRepositoryInterface $carRepository,
         CarFactory $carFactory,
-        FilterBuilder $filter,
+        FilterBuilder $filterBuilder,
+        FilterGroupBuilder $filterGroupBuilder,
         SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->productRepository = $productRepository;
         $this->carRepository = $carRepository;
         $this->carFactory = $carFactory;
-        $this->filter = $filter;
+        $this->filterBuilder = $filterBuilder;
+        $this->filterGroupBuilder = $filterGroupBuilder;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
 
         parent::__construct($context);
@@ -49,7 +54,7 @@ class View extends Action
     {
         /* Task 1-5 get active product data*/
         //---------------------------------------TASK 1-----------------------------------------------//
-        $filter = $this->filter->setField(ProductInterface::NAME)
+        $filter = $this->filterBuilder->setField(ProductInterface::NAME)
                                 ->setValue('%test%')
                                 ->setConditionType('like')
                                 ->create();
@@ -67,6 +72,39 @@ class View extends Action
         }
         //---------------------------------------TASK 1-----------------------------------------------//
 
+        //additional work with search criteria
+        //---------------------------------------TASK 1 - * ------------------------------------------//
+
+        $filter1 = $this->filterBuilder->setField(ProductInterface::NAME)
+            ->setValue('%test%')
+            ->setConditionType('like')
+            ->create();
+
+        $this->filterGroupBuilder->setFilters([$filter1]);
+
+        $filterGroup1 = $this->filterGroupBuilder->create();
+
+        $filter2 = $this->filterBuilder->setField(ProductInterface::PRICE)
+            ->setValue(300)
+            ->setConditionType('lt')
+            ->create();
+
+        $this->filterGroupBuilder->setFilters([$filter2]);
+
+        $filterGroup2 = $this->filterGroupBuilder->create();
+
+        $this->searchCriteriaBuilder->setFilterGroups([$filterGroup1, $filterGroup2]);
+
+        $searchCriteria2 = $this->searchCriteriaBuilder->create();
+
+        $data = $this->productRepository->getList($searchCriteria2)->getItems();
+
+        foreach ($data as $item) {
+            echo 'Name: ' . $item->getName() . ' -> Price:' . $item->getPrice();
+            echo '<br>';
+        }
+        //--------------------------------------------------------------------------------------------//
+
         /* Work with custom Repository*/
         //---------------------------------------TASK 2-----------------------------------------------//
         $this->workWithCustomRepository();
@@ -80,7 +118,7 @@ class View extends Action
     {
         try {
             echo '<br> <strong>TASK 2</strong> <br>';
-            $newFilter = $this->filter->setField(CarInterface::MODEL)
+            $newFilter = $this->filterBuilder->setField(CarInterface::MODEL)
                 ->setValue('%ford%')
                 ->setConditionType('like')
                 ->create();
