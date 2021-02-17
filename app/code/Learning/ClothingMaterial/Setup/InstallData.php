@@ -9,6 +9,7 @@ namespace Learning\ClothingMaterial\Setup;
 use Exception;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
+use Magento\Cms\Model\Block;
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Model\Config;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
@@ -16,6 +17,7 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * @codeCoverageIgnore
@@ -24,6 +26,7 @@ class InstallData implements InstallDataInterface
 {
     const CUSTOM_PRODUCT_ATTRIBUTE_CODE = 'clothing_material';
     const CUSTOM_CATEGORY_ATTRIBUTE_CODE = 'test_category_attribute';
+    const CMS_BLOCK_ATTRIBUTE = 'testCmsBlock';
     const CUSTOM_CATEGORY_UI_ATTRIBUTE_CODE = 'test_customer_ui_attribute';
     const CUSTOM_CUSTOMER_ATTRIBUTE_CODE = 'test_customer_attribute';
 
@@ -80,6 +83,30 @@ class InstallData implements InstallDataInterface
                 'visible_on_front' => true
             ]
         );
+
+        $eavSetup->addAttribute(
+            Product::ENTITY,
+            self::CMS_BLOCK_ATTRIBUTE,
+            [
+                'group' => 'General',
+                'type' => 'varchar',
+                'label' => 'CMS blocks',
+                'input' => 'select',
+                'source' => 'Learning\ClothingMaterial\Model\Attribute\Source\CmsBlock',
+                'frontend' => 'Learning\ClothingMaterial\Model\Attribute\Frontend\CmsBlock',
+                'backend' => '',
+                'required' => false,
+                'sort_order' => 51,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'is_used_in_grid' => false,
+                'is_visible_in_grid' => false,
+                'is_filterable_in_grid' => false,
+                'visible' => true,
+                'is_html_allowed_on_front' => true,
+                'visible_on_front' => true
+            ]
+        );
+
 
         $eavSetup->addAttribute(
             Category::ENTITY,
