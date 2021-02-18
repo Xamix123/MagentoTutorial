@@ -67,11 +67,12 @@ class View extends Action
         $data = $this->productRepository->getList($searchCriteria)->getItems();
 
         foreach ($data as $item) {
-            echo 'Sku: ' . $item->getSku() . ' -  Name: ' . $item->getName();
+            echo 'Sku: ' . $item->getSku() . ' -  Name: ' . $item->getName() . ' - Price: ' . $item->getPrice();
             echo '<br>';
         }
         //---------------------------------------TASK 1-----------------------------------------------//
-
+        echo '________________________________________________________________________________________';
+        echo '<br>';
         //additional work with search criteria
         //---------------------------------------TASK 1 - * ------------------------------------------//
 
@@ -85,7 +86,7 @@ class View extends Action
         $filterGroup1 = $this->filterGroupBuilder->create();
 
         $filter2 = $this->filterBuilder->setField(ProductInterface::PRICE)
-            ->setValue(300)
+            ->setValue(350)
             ->setConditionType('lt')
             ->create();
 

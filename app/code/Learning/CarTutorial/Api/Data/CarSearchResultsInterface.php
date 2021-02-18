@@ -10,7 +10,7 @@ interface CarSearchResultsInterface extends SearchResultsInterface
     /**
      * @return array
      */
-    public function getItems(): array;
+    public function getItems();
 
     /**
      * @param array $items

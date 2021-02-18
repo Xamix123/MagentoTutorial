@@ -19,7 +19,7 @@ interface CarRepositoryInterface
      * @param CarInterface $car
      * @return bool
      */
-    public function save(CarInterface $car): bool;
+    public function save(CarInterface $car);
 
     /**
      * @param $id
