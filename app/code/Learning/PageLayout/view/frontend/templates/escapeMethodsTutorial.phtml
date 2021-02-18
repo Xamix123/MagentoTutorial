@@ -1,0 +1,40 @@
+<?php
+use Learning\PageLayout\Block\TestBlock;
+/** @var TestBlock $block */
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+
+$data = [
+    1 => 'uno',
+    2 => 'duo',
+    3 => 'tre'
+];
+
+$dataJson = json_encode($data);
+
+// Output in single quotes does not need escaping (for example echo ‘some text’)
+echo '<strong> apple </strong><br>';
+
+// Output in double quotes without variables does not need escaping (for example echo “some text”)
+
+/* Example 1 - escapeHtml */
+$block->setTitle("<script>alert('hello');</script>");
+
+/* Example 2 - escapeJs */
+$block->setParam1("♥♥♥♥♥♥♥♥♥♥♥♥");
+
+/* Example 3 - escapeHtmlAttr */
+$myUrl = 'https://www.youtube.com/watch?v=ru_KbuQzjdk';
+
+ ?>
+<!-- Example 1 - escapeHtml -->
+<?= $block->escapeHtml($block->getTitle()) . '<br>'?>
+
+<!-- Example 2 - escapeJs -->
+<?= $block->escapeJs("การรักษาความปลอดภัยแม่แบบ: วิธีไหนที่จะใช") . '<br>'?>
+
+
+<input type="text" placeholder=" <?php echo $block->escapeHtmlAttr("การรักษาความปลอดภัยแม่แบบ: วิธีไหนที่จะใช้?")?>" /><br>
+
+<a href="<?= $block->escapeUrl($myUrl)?>">Click on me</a>

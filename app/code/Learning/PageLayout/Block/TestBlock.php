@@ -2,14 +2,21 @@
 
 namespace Learning\PageLayout\Block;
 
+use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
 
 class TestBlock extends Template
 {
     private $status = true;
 
-    public function __construct(Template\Context $context, array $data = [])
-    {
+    protected $_escaper;
+
+    public function __construct(
+        Template\Context $context,
+        Escaper $_escaper,
+        array $data = []
+    ) {
+        $this->_escaper = $_escaper;
         parent::__construct($context, $data);
     }
 
