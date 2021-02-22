@@ -121,7 +121,7 @@ class ProductTest extends AbstractBackendController
                     'page_layout' => '',
                     'options_container' => 'container2',
                     'custom_design' => '',
-                    'custom_layout' => '',
+                    'custom_layout.xml' => '',
                     'price_view' => '0',
                     'shipment_type' => '0',
                     'news_from_date' => '',

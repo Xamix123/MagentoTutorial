@@ -5,13 +5,7 @@ use Magento\Framework\Escaper;
 
 /** @var Escaper $escaper */
 
-$data = [
-    1 => 'uno',
-    2 => 'duo',
-    3 => 'tre'
-];
 
-$dataJson = json_encode($data);
 
 // Output in single quotes does not need escaping (for example echo ‘some text’)
 echo '<strong> apple </strong><br>';
@@ -22,19 +16,36 @@ echo '<strong> apple </strong><br>';
 $block->setTitle("<script>alert('hello');</script>");
 
 /* Example 2 - escapeJs */
-$block->setParam1("♥♥♥♥♥♥♥♥♥♥♥♥");
+$egypt = 'การรักษาความปลอดภัยแม่แบบ';
 
 /* Example 3 - escapeHtmlAttr */
-$myUrl = 'https://www.youtube.com/watch?v=ru_KbuQzjdk';
+$data = [
+];
 
- ?>
+$dataJson = json_encode($data);
+
+/* Example 4 - escapeUrl */
+$myUrl = "https://magento235.loc/pagelayout/show/escapeMethodsTutorial/
+<script >location='https://magento235.loc/';</script>";
+
+/* Example 5 - escapeCss */
+$css = "background: #000\"><script>alert('hello');</script>";
+?>
+
+<!---------------------------------------------------------------------------------------------->
+
 <!-- Example 1 - escapeHtml -->
 <?= $block->escapeHtml($block->getTitle()) . '<br>'?>
 
 <!-- Example 2 - escapeJs -->
-<?= $block->escapeJs("การรักษาความปลอดภัยแม่แบบ: วิธีไหนที่จะใช") . '<br>'?>
+<?= $block->escapeJs($egypt) . '<br>'?>
 
+<!-- Example 3 - escapeHtmlAttr -->
+<div title='<script>console.log("hello");</script>'>
 
-<input type="text" placeholder=" <?php echo $block->escapeHtmlAttr("การรักษาความปลอดภัยแม่แบบ: วิธีไหนที่จะใช้?")?>" /><br>
+<!-- Example 4 - escapeUrl -->
+<a href="<?= $block->escapeUrl($myUrl) ?>">Click on me</a>
 
-<a href="<?= $block->escapeUrl($myUrl)?>">Click on me</a>
+<!-- Example 5 - escapeCss -->
+<div style="<?= $block->escapeCss($css)?>">
+

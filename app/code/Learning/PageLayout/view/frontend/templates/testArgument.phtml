@@ -3,6 +3,9 @@ use Learning\PageLayout\Block\TestBlock;
 
 /** @var TestBlock $block */
 ?>
-<?php echo $block->getLabel(); ?>
+<?=  $block->getLabel(); ?>
 <?= '<br>' ?>
-<?php echo $block->showData(); ?>
+<?=  $block->showData(); ?>
+
+<!-- var from etc/view.xml test-->
+<?= $block->getBreakpoints();?>

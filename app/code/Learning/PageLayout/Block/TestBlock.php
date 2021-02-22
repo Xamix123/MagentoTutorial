@@ -36,4 +36,13 @@ class TestBlock extends Template
     {
         $this->status = $status;
     }
+
+    /**
+     * @return string
+     */
+    public function getBreakpoints(): string
+    {
+        return \GuzzleHttp\json_encode($this->getVar('breakpoints'));
+    }
+
 }

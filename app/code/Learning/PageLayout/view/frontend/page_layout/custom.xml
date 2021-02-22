@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+    <referenceContainer name="page.wrapper">
+        <container name="header.container" as="header_container" label="Контейнер заголовка страницы" htmlTag="header"
+            htmlClass="page-header" before="before.body.end"/>
+        <container name="page.top" as="page_top" label="После заголовка страницы" before="header.container"/>
+    </referenceContainer>
+    <referenceContainer name="copyright" remove="true"/>
+</layout>

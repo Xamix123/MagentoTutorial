@@ -90,7 +90,7 @@ class TypeLocatorTest extends \PHPUnit\Framework\TestCase
                     'updated_at' => 'string',
                     'country_of_manufacture' => 'string',
                     'quantity_and_stock_status' => \Magento\CatalogInventory\Api\Data\StockItemInterface::class . '[]',
-                    'custom_layout' => 'string',
+                    'custom_layout.xml' => 'string',
                     'url_key' => 'string',
                     'url_path' => 'string',
                     'msrp' => 'double',

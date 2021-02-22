@@ -455,7 +455,7 @@ return [
                 'defaultValue' =>  null
             ],
             [
-                'name' =>  'custom_layout',
+                'name' =>  'custom_layout.xml',
                 'description' =>  '',
                 'type' =>  [
                     'kind' =>  'INPUT_OBJECT',
@@ -1006,7 +1006,7 @@ return [
                 'defaultValue' =>  null
             ],
             [
-                'name' =>  'custom_layout',
+                'name' =>  'custom_layout.xml',
                 'description' =>  '',
                 'type' =>  [
                     'kind' =>  'ENUM',
