@@ -50,5 +50,15 @@ module.exports = {
             'css/styles'
         ],
         dsl: 'less'
+    },
+    mytheme123: {
+        area: 'frontend',
+        name: 'Learning/mytheme123',
+        locale: 'en_US',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
     }
 };
