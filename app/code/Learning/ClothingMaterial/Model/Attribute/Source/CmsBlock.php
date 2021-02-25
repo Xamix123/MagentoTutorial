@@ -24,7 +24,7 @@ class CmsBlock extends AbstractSource
     public function getAllOptions(): array
     {
         if (!$this->_options) {
-            $this->_options =  $this->blockFactory->create()
+            $this->_options = $this->blockFactory->create()
               ->getCollection()
               ->load()
               ->toOptionArray();
