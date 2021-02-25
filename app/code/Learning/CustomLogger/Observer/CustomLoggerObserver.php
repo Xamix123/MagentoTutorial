@@ -32,12 +32,12 @@ class CustomLoggerObserver implements ObserverInterface
         $userId = $authUser->getId();
         $userName = $authUser->getName();
         $authUser =  ($userId != null && $userName != null)
-            ? 'User Id:' . $userId . " User Name: " . $userName
+            ? 'User Id: ' . $userId . " User Name: " . $userName
             : 'Undefined user';
 
         $this->logger->debug(' Item was created.' .
             ' Item ID: ' . $product->getId() .
-            ' Item Name:' . $product->getName() .
+            ' Item Name: ' . $product->getName() .
             ' by ' . $authUser);
     }
 }
