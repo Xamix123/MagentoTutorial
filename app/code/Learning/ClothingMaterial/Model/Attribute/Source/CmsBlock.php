@@ -3,17 +3,18 @@
 namespace Learning\ClothingMaterial\Model\Attribute\Source;
 
 use Magento\Cms\Model\BlockFactory;
+use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
 use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 
 class CmsBlock extends AbstractSource
 {
-    private $blockFactory;
+    private $collectionBlockFactory;
     protected $_options;
 
     public function __construct(
-        BlockFactory $blockFactory
+        CollectionFactory $collectionBlockFactory
     ) {
-        $this->blockFactory = $blockFactory;
+        $this->collectionBlockFactory = $collectionBlockFactory;
     }
 
     /**
@@ -24,10 +25,8 @@ class CmsBlock extends AbstractSource
     public function getAllOptions(): array
     {
         if (!$this->_options) {
-            $this->_options = $this->blockFactory->create()
-              ->getCollection()
-              ->load()
-              ->toOptionArray();
+            $collection = $this->collectionBlockFactory->create();
+            $this->_options = $collection->toOptionArray();
         }
         return $this->_options;
     }
