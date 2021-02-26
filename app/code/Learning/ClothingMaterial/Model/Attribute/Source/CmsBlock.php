@@ -2,19 +2,43 @@
 
 namespace Learning\ClothingMaterial\Model\Attribute\Source;
 
-use Magento\Cms\Model\BlockFactory;
-use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
+use Magento\Cms\Model\BlockRepository;
 use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\Search\FilterGroupBuilder;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 
 class CmsBlock extends AbstractSource
 {
-    private $collectionBlockFactory;
+    private $blockRepository;
+
+    /**
+     * @var FilterBuilder
+     */
+    private $filterBuilder;
+
+    /**
+     * @var FilterGroupBuilder
+     */
+    private $filterGroupBuilder;
+
+    /**
+     * @var SearchCriteriaBuilder
+     */
+    private $searchCriteriaBuilder;
+
     protected $_options;
 
     public function __construct(
-        CollectionFactory $collectionBlockFactory
+        BlockRepository $blockRepository,
+        FilterBuilder $filterBuilder,
+        FilterGroupBuilder $filterGroupBuilder,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
-        $this->collectionBlockFactory = $collectionBlockFactory;
+        $this->blockRepository = $blockRepository;
+        $this->filterBuilder = $filterBuilder;
+        $this->filterGroupBuilder = $filterGroupBuilder;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
     /**
@@ -24,9 +48,25 @@ class CmsBlock extends AbstractSource
      */
     public function getAllOptions(): array
     {
+        $filter = $this->filterBuilder->setField('title')
+            ->setConditionType('notnull')
+            ->create();
+
+        $this->searchCriteriaBuilder->addFilters([$filter]);
+        $this->searchCriteriaBuilder->setPageSize(20);
+
+        $searchCriteria = $this->searchCriteriaBuilder->create();
+
         if (!$this->_options) {
-            $collection = $this->collectionBlockFactory->create();
-            $this->_options = $collection->toOptionArray();
+            $list = $this->blockRepository->getList($searchCriteria);
+            $items = $list->getItems();
+
+            foreach ($items as $id => $item) {
+                $this->_options[$id] = [
+                 'value' => $item->getId(),
+                 'label' => $item->getTitle()
+                ];
+            }
         }
         return $this->_options;
     }
