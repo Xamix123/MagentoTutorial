@@ -11,24 +11,57 @@ use Learning\CarTutorial\Model\Car;
 use Learning\CarTutorial\Model\CarFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ProductFactory;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\FilterGroupBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class View extends Action
 {
+
+    /**
+     * @var ProductRepositoryInterface
+     */
     private $productRepository;
 
+    /**
+     * @var CarRepositoryInterface
+     */
     private $carRepository;
 
+    /**
+     * @var CarFactory
+     */
     private $carFactory;
 
+    /**
+     * @var ProductCollectionFactory
+     */
+    private $collectionFactory;
+
+    /**
+     * @var ProductFactory
+     */
+    private $productFactory;
+
+    /**
+     * @var FilterBuilder
+     */
     private $filterBuilder;
 
+    /**
+     * @var FilterGroupBuilder
+     */
     private $filterGroupBuilder;
 
+    /**
+     * @var SearchCriteriaBuilder
+     */
     private $searchCriteriaBuilder;
 
     public function __construct(
@@ -36,6 +69,8 @@ class View extends Action
         ProductRepositoryInterface $productRepository,
         CarRepositoryInterface $carRepository,
         CarFactory $carFactory,
+        ProductCollectionFactory $collectionFactory,
+        ProductFactory $productFactory,
         FilterBuilder $filterBuilder,
         FilterGroupBuilder $filterGroupBuilder,
         SearchCriteriaBuilder $searchCriteriaBuilder
@@ -43,6 +78,8 @@ class View extends Action
         $this->productRepository = $productRepository;
         $this->carRepository = $carRepository;
         $this->carFactory = $carFactory;
+        $this->productFactory = $productFactory;
+        $this->collectionFactory = $collectionFactory;
         $this->filterBuilder = $filterBuilder;
         $this->filterGroupBuilder = $filterGroupBuilder;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
@@ -108,8 +145,15 @@ class View extends Action
 
         /* Work with custom Repository*/
         //---------------------------------------TASK 2-----------------------------------------------//
-        $this->workWithCustomRepository();
+//        $this->workWithCustomRepository();
         //---------------------------------------TASK 2-----------------------------------------------//
+
+        echo '________________________________________________________________________________________';
+        echo '<br>';
+
+        //---------------------------------------TASK 3-----------------------------------------------//
+        $this->workWithLogger();
+        //--------------------------------------------------------------------------------------------//
     }
 
     /**
@@ -157,5 +201,35 @@ class View extends Action
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    public function workWithLogger()
+    {
+        $collection = $this->collectionFactory->create();
+        $entityId = $collection->getLastItem()->getData('entity_id');
+
+        $product = $this->productFactory->create();
+        $product->setSku('abc' . $entityId);
+        $product->setName('Name' . $entityId);
+        $product->setPrice(mt_rand(100, 1000));
+        $product->setAttributeSetId(4);
+        $product->setTypeId('simple');
+
+
+        $product->setStockData(['qty' => 100, 'is_in_stock' => 1]);
+        $product->setQuantityAndStockStatus(['qty' => 100, 'is_in_stock' => 1]);
+
+        try {
+            $this->productRepository->save($product);
+        } catch (Exception $e) {
+            echo $e->getMessage() . ' ' . $e->getCode();
+        }
+
+        $testData = $this->productRepository->get('abc');
+
+        var_export($testData->getName());
     }
 }

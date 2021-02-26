@@ -1,7 +1,5 @@
 <?php
 
-// app/code/[Vendor]/[Module]/Api/Data/FaqInterface.php
-
 namespace Learning\CarTutorial\Api\Data;
 
 interface CarInterface

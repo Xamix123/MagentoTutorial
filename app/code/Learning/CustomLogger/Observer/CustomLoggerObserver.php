@@ -28,14 +28,22 @@ class CustomLoggerObserver implements ObserverInterface
         $product = $observer->getEvent()->getData('product');
 
         $authUser = $this->authSession->getUser();
+        if ($authUser != null) {
+            $userId = $authUser->getId();
+            $userName = $authUser->getName();
 
-        $userId = $authUser->getId();
-        $userName = $authUser->getName();
-        $authUser =  ($userId != null && $userName != null)
-            ? 'User Id: ' . $userId . " User Name: " . $userName
-            : 'Undefined user';
+            $authUser = ($userId !== null && $userName !== null)
+                ? 'User Id: ' . $userId . ' User Name: ' . $userName
+                : 'Undefined user';
+        } else {
+            $authUser = 'Undefined user';
+        }
 
-        $this->logger->debug(' Item was created.' .
+        $message = $product->getCreatedAt() === $product->getUpdatedAt()
+           ? ' Item was created.'
+           : ' Item was updated.';
+
+        $this->logger->debug($message .
             ' Item ID: ' . $product->getId() .
             ' Item Name: ' . $product->getName() .
             ' by ' . $authUser);
