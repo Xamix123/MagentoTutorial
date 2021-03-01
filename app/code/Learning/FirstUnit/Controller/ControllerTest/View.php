@@ -91,13 +91,11 @@ class View extends Action
     {
         /* Task 1-5 get active product data*/
         //---------------------------------------TASK 1-----------------------------------------------//
-        $filter = $this->filterBuilder->setField(ProductInterface::NAME)
-                                ->setValue('%test%')
-                                ->setConditionType('like')
-                                ->create();
-
-        $this->searchCriteriaBuilder->addFilters([$filter]);
-        $this->searchCriteriaBuilder->setPageSize(20);
+        $this->searchCriteriaBuilder->addFilter(
+            'name',
+            '%test%',
+            'like'
+        );
 
         $searchCriteria = $this->searchCriteriaBuilder->create();
 
@@ -217,7 +215,6 @@ class View extends Action
         $product->setPrice(mt_rand(100, 1000));
         $product->setAttributeSetId(4);
         $product->setTypeId('simple');
-
 
         $product->setStockData(['qty' => 100, 'is_in_stock' => 1]);
         $product->setQuantityAndStockStatus(['qty' => 100, 'is_in_stock' => 1]);
