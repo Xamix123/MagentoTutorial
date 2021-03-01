@@ -21,6 +21,7 @@ class Material extends AbstractSource
                 ['label' => __('Denim'), 'value' => 'denim'],
                 ['label' => __('Fur'), 'value' => 'fur'],
                 ['label' => __('Wool'), 'value' => 'wool'],
+                ['label' => __('TestData1'), 'value' => 'testData'],
             ];
         }
         return $this->_options;

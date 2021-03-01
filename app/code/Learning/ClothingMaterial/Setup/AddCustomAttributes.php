@@ -6,27 +6,32 @@
 
 namespace Learning\ClothingMaterial\Setup;
 
-use Exception;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
 use Magento\Customer\Model\Customer;
 use Magento\Eav\Model\Config;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
-use Magento\Framework\Setup\InstallDataInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 /**
  * @codeCoverageIgnore
  */
-class InstallData implements InstallDataInterface
+class AddCustomAttributes implements DataPatchInterface
 {
     const CUSTOM_PRODUCT_ATTRIBUTE_CODE = 'clothing_material';
     const CUSTOM_CATEGORY_ATTRIBUTE_CODE = 'test_category_attribute';
     const CMS_BLOCK_ATTRIBUTE = 'testCmsBlock';
     const CUSTOM_CATEGORY_UI_ATTRIBUTE_CODE = 'test_customer_ui_attribute';
     const CUSTOM_CUSTOMER_ATTRIBUTE_CODE = 'test_customer_attribute';
+
+
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    protected $moduleDataSetup;
+
 
     private $eavConfig;
 
@@ -42,21 +47,16 @@ class InstallData implements InstallDataInterface
      * @param Config $eavConfig
      */
     public function __construct(
+        ModuleDataSetupInterface $moduleDataSetup,
         EavSetupFactory $eavSetupFactory,
         Config $eavConfig
     ) {
+        $this->moduleDataSetup = $moduleDataSetup;
         $this->eavSetupFactory = $eavSetupFactory;
         $this->eavConfig = $eavConfig;
     }
 
-    /**
-     * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @throws Exception
-     */
-    public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+    public function apply()
     {
         $eavSetup = $this->eavSetupFactory->create();
         $eavSetup->addAttribute(
@@ -136,7 +136,7 @@ class InstallData implements InstallDataInterface
                 'required' => false,
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'group' => 'Display Settings'
-          ]
+            ]
         );
 
         $eavSetup->addAttribute(
@@ -165,4 +165,22 @@ class InstallData implements InstallDataInterface
 
         $customerAttribute->save();
     }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getDependencies()
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAliases()
+    {
+        return [];
+    }
+
 }
