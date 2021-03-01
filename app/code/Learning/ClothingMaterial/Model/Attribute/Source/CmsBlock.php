@@ -10,6 +10,8 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 
 class CmsBlock extends AbstractSource
 {
+    const CMS_BLOCK_ATTRIBUTE = 'test_cms_block_attribute';
+
     private $blockRepository;
 
     /**

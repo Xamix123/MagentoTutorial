@@ -6,6 +6,7 @@
 
 namespace Learning\ClothingMaterial\Setup;
 
+use Learning\ClothingMaterial\Model\Attribute\Source\CmsBlock;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
 use Magento\Customer\Model\Customer;
@@ -22,7 +23,6 @@ class AddCustomAttributes implements DataPatchInterface
 {
     const CUSTOM_PRODUCT_ATTRIBUTE_CODE = 'clothing_material';
     const CUSTOM_CATEGORY_ATTRIBUTE_CODE = 'test_category_attribute';
-    const CMS_BLOCK_ATTRIBUTE = 'testCmsBlock';
     const CUSTOM_CATEGORY_UI_ATTRIBUTE_CODE = 'test_customer_ui_attribute';
     const CUSTOM_CUSTOMER_ATTRIBUTE_CODE = 'test_customer_attribute';
 
@@ -84,7 +84,7 @@ class AddCustomAttributes implements DataPatchInterface
 
         $eavSetup->addAttribute(
             Product::ENTITY,
-            self::CMS_BLOCK_ATTRIBUTE,
+            CmsBlock::CMS_BLOCK_ATTRIBUTE,
             [
                 'group' => 'General',
                 'type' => 'varchar',
