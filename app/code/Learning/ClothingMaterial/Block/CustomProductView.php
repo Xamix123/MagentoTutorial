@@ -41,13 +41,15 @@ class CustomProductView extends View
     }
 
     /**
-     * @return BlockInterface
+     * @return BlockInterface|null
      * @throws LocalizedException
      */
     public function getCmsBlock()
     {
         $cmsBlockId = $this->getProduct()->getData(CmsBlock::CMS_BLOCK_ATTRIBUTE);
 
-        return $this->cmsBlockRepository->getById($cmsBlockId);
+        return $cmsBlockId !== null
+            ? $this->cmsBlockRepository->getById($cmsBlockId)
+            : null;
     }
 }

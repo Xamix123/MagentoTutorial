@@ -9,7 +9,6 @@ class CmsBlock extends AbstractFrontend
 {
     public function getValue(DataObject $object)
     {
-        $value = $object->getData($this->getAttribute()->getAttributeCode());
-        return "<b>$value</b>";
+        return '<i> You simple guy and understand this</i>';
     }
 }

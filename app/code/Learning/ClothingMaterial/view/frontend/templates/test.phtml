@@ -6,5 +6,7 @@ use Learning\ClothingMaterial\Block\CustomProductView;
 
 $cms = $block->getCmsBlock();
 
-echo $cms->getContent();
-
+?>
+<?php if ($cms !== null): ?>
+<?= $cms->getContent(); ?>
+<?php endif; ?>
