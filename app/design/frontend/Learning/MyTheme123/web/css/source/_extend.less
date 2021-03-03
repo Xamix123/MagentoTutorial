@@ -1,14 +1,14 @@
 // Desktop
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen_x3){
     body{
-        background: darkred;
+        background: darkgray;
     }
 }
 
 // Desktop
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen_x2){
     body{
-        background: darkgoldenrod;
+        background: darkgreen;
     }
 }
 
@@ -22,7 +22,7 @@
 //Desktop
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s){
     body{
-        background: purple;
+        background: lightcoral;
     }
 }
 
@@ -33,9 +33,7 @@
     }
 }
 
-// Fonts
-@font-family-name__base: 'Roboto';
-@font-family-name__regular: 'Montserrat';
-@font-family__base: @font-family-name__base, @font-family__sans-serif;
-@font-family__condensed: 'Roboto Condensed', 'Helvetica Condensed', 'Arial Narrow', Arial, sans-serif;
-@font-family__regular: 'Montserrat', 'Tahoma', 'Open sans', Arial, sans-serif;
+//  Fonts
+@font-family-name__base: 'DotGothic16';
+@font-family-name__regular: 'Montserrat-Regular';
+@font-family__base: @font-family-name__base;

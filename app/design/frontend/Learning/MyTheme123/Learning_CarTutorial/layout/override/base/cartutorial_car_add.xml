@@ -3,9 +3,6 @@
     <head>
         <css src="Learning_CarTutorial::test.css" />
         <css src="Learning_CarTutorial::testLess.css"/>
+        <css src="Learning_CarTutorial::testGrunt.css"/>
     </head>
-
-    <referenceContainer  display="true" name="content">
-        <block class="Learning\CarTutorial\Block\ChildBlock" name="learning_child" template="Learning_CarTutorial::testOverride.phtml" as="learningChild" />
-    </referenceContainer>
 </page>
