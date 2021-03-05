@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Learning_Email::view" title="Email" module="Learning_Email" sortOrder="950" resource="Learning_Email::view"/>
+        <add id="Learning_Email::main" title="Email Custom" module="Learning_Email" sortOrder="10" parent="Learning_Email::view" action="customEmail/email/main" resource="Learning_AdminGrid::main"/>
+    </menu>
+</config>
