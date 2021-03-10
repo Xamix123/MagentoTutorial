@@ -36,7 +36,6 @@ class Index extends Action
     {
         $resultPage = $this->resultPageFactory->create(); // create new object Page
         $resultPage->setActiveMenu('Learning_AdminGrid::grid'); // setActive menu
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage AdminGrid')); // add title for start page
 
         return $resultPage; //return page
     }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sampleform_form.sampleform_form_data_source</item>
+            <item name="deps" xsi:type="string">sampleform_form.sampleform_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Sample Form</item>
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="send" class="Learning\AdminGrid\Block\Adminhtml\Email\SendButton"/>
+        </buttons>
+        <namespace>sampleform_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>sampleform_form.sampleform_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="sampleform_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Learning\AdminGrid\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">sampleform_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="sample_fieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Email Form</item>
+            </item>
+        </argument>
+
+        <!-- This field represents form id and is hidden -->
+        <field name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sampleform</item>
+                </item>
+            </argument>
+        </field>
+
+        <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">User email</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item> <!-- required -->
+                    </item>
+                    <item name="dataType" xsi:type="string">email</item>
+                    <item name="formElement" xsi:type="string">email</item>
+                    <item name="source" xsi:type="string">sampleform</item>
+                </item>
+            </argument>
+        </field>
+
+<!--        &lt;!&ndash; Custom Button &ndash;&gt;-->
+<!--        <button name="sendButton">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="visible" xsi:type="boolean">true</item>-->
+<!--                    <item name="source" xsi:type="string">sampleform</item>-->
+<!--                    <item name="title" xsi:type="string">Send</item>-->
+<!--                    <item name="actions" xsi:type="array">-->
+<!--                        <item name="0" xsi:type="array">-->
+<!--                            <item name="targetName" xsi:type="string">TARGET_NAME</item>-->
+<!--                            <item name="actionName" xsi:type="string">js/action/testAction</item>-->
+<!--                        </item>-->
+<!--                    </item>-->
+
+<!--                </item>-->
+<!--            </argument>-->
+<!--        </button>-->
+    </fieldset>
+
+</form>
