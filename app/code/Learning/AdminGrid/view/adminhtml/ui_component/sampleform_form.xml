@@ -62,7 +62,7 @@
         </field>
 
         <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
-        <field name="title">
+        <field name="email">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string">User email</item>
