@@ -78,35 +78,6 @@ gulp.task('js', function() {
             .pipe(notify({ message: 'Successfully processed image' }));
     });
 
-// // Default task
-    // gulp.task('default', [], function() {
-    //     gulp.start('css', 'js', 'images');
-    // });
-
-
-// // Error message
-// var onError = function (err) {
-//     notify.onError({
-//         title   : 'Gulp',
-//         subtitle: 'Failure!',
-//         message : 'Error: <%= error.message %>',
-//         sound   : 'Beep'
-//     })(err);
-//
-//     this.emit('end');
-// };
-
-// // Compile CSS
-// gulp.task('styles', function () {
-//     var stream = gulp
-//         .src([config.src])
-//         .pipe(plumber({errorHandler: onError}))
-//         .pipe(sass().on('error', sass.logError));
-//
-//     return stream
-//         .pipe(gulp.dest('./web/css/'));
-// });
-
 // Watch
 gulp.task('watch', function () {
     livereload.listen();
