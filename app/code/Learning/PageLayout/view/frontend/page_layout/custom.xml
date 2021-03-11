@@ -3,9 +3,9 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
     <update handle="empty"/>
     <referenceContainer name="page.wrapper">
-        <container name="header.container" as="header_container" label="Контейнер заголовка страницы" htmlTag="header"
+        <container name="header.container" as="header_container"  htmlTag="header"
             htmlClass="page-header" before="before.body.end"/>
-        <container name="page.top" as="page_top" label="После заголовка страницы" before="header.container"/>
+        <container name="page.top" as="page_top" before="header.container"/>
     </referenceContainer>
     <referenceContainer name="copyright" remove="true"/>
 </layout>
