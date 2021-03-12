@@ -11,6 +11,7 @@
             <item name="provider" xsi:type="string">sampleform_form.sampleform_form_data_source</item>
             <item name="deps" xsi:type="string">sampleform_form.sampleform_form_data_source</item>
         </item>
+
         <item name="label" xsi:type="string" translate="true">Sample Form</item>
         <item name="layout" xsi:type="array">
             <item name="type" xsi:type="string">tabs</item>
@@ -34,6 +35,11 @@
             <argument name="name" xsi:type="string">sampleform_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="admingrid/grid/send" />
+                </item>
+            </argument>
         </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
@@ -78,22 +84,21 @@
         </field>
 
 <!--        &lt;!&ndash; Custom Button &ndash;&gt;-->
-<!--        <button name="sendButton">-->
-<!--            <argument name="data" xsi:type="array">-->
-<!--                <item name="config" xsi:type="array">-->
-<!--                    <item name="visible" xsi:type="boolean">true</item>-->
-<!--                    <item name="source" xsi:type="string">sampleform</item>-->
-<!--                    <item name="title" xsi:type="string">Send</item>-->
-<!--                    <item name="actions" xsi:type="array">-->
-<!--                        <item name="0" xsi:type="array">-->
-<!--                            <item name="targetName" xsi:type="string">TARGET_NAME</item>-->
-<!--                            <item name="actionName" xsi:type="string">js/action/testAction</item>-->
-<!--                        </item>-->
-<!--                    </item>-->
+        <button name="sendButton">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="title" xsi:type="string">Send</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="actionName" xsi:type="string">ajaxSend</item>
+                            <item name="targetName" xsi:type="string">Learning_AdminGrid/js/form/element/ajaxSend</item>
+                        </item>
+                    </item>
 
-<!--                </item>-->
-<!--            </argument>-->
-<!--        </button>-->
+                </item>
+            </argument>
+        </button>
     </fieldset>
 
 </form>

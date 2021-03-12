@@ -7,20 +7,10 @@ use Magento\Framework\App\RequestInterface;
 
 class Send extends Action
 {
-    private $request;
-
-    public function __construct(
-        Action\Context $context,
-        RequestInterface $request
-    ) {
-        $this->request = $request;
-        parent::__construct($context);
-    }
-
     public function execute()
     {
-        $data = $this->request->getParams();
-        var_export($data);
+        $data = $this->getRequest()->getPostValue();
+        var_export($data);die();
         echo 'its works halliluya<br>';
     }
 }
