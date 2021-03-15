@@ -95,7 +95,6 @@
                             <item name="targetName" xsi:type="string">Learning_AdminGrid/js/form/element/ajaxSend</item>
                         </item>
                     </item>
-
                 </item>
             </argument>
         </button>

@@ -32,8 +32,6 @@
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
-            </item>
-            <item name="config" xsi:type="array">
                 <item name="submit_url" xsi:type="url" path="uiformtest/form/save"/>
             </item>
         </argument>
@@ -70,12 +68,15 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">testform</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item><!-- this validates it as required -->
+                    </item>
                 </item>
             </argument>
         </field>
 
         <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
-        <field name="description">
+        <field name="text_data">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string">Text Letter</item>
@@ -88,7 +89,7 @@
             </argument>
         </field>
 
-        <field name="Status" formElement="checkbox">
+        <field name="status" formElement="checkbox">
             <settings>
                 <label translate="true">Enabled</label>
                 <tooltip>

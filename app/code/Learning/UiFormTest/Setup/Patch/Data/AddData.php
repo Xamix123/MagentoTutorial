@@ -34,8 +34,9 @@ class AddData implements DataPatchInterface, PatchVersionInterface
         $this->moduleDataSetup->startSetup();
         $testModelDTO = $this->testModelFactory->create();
         $testModelDTO->setEmail('test@gmail.com')
-            ->setDescription('test description 123 123')
-            ->setStatus("testStatus");
+            ->setTextData('test description 123 123')
+            ->setStatus("testStatus")
+            ->setCreatedAt("2020-12-22 05:01:52");
 
         $this->testModelResource->save($testModelDTO);
         $this->moduleDataSetup->endSetup();
