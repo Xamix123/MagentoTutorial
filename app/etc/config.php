@@ -248,6 +248,7 @@ return [
         'Learning_FirstUnit' => 1,
         'Learning_GreetingMessage' => 1,
         'Learning_ScriptsLearning' => 1,
+        'Learning_UiFormTest' => 1,
         'MSP_Common' => 1,
         'MSP_DevTools' => 1,
         'Magento_PaypalReCaptcha' => 1,

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+                        <uiComponent name="testform_form" />
+<!--            <block class="Magento\Framework\View\Element\Template" name="learning" template="Learning_UiFormTest::test.phtml" as="learningChild" />-->
+        </referenceContainer>
+    </body>
+</page>
