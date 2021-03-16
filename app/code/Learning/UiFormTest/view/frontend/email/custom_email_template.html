@@ -1,0 +1,15 @@
+<!--@Subject Email Template @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image"}
+@-->
+<!--@styles
+body,td { background-image: url(/images/quilliam-files-bg.jpg); color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+{{var textData}}
+
+{{var store.getFrontendName()}}
+{{template config_path="design/email/footer_template"}}

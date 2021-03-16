@@ -13,6 +13,7 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Framework\View\Result\PageFactory;
@@ -101,13 +102,15 @@ class Save extends Action
 
     /**
      * @return ResponseInterface|ResultInterface|void
+     * @throws LocalizedException
+     * @throws MailException
      */
     public function execute()
     {
         $postObj = $this->getRequest()->getPostValue();
 
         $data = array_merge($postObj['sample_fieldset'], ['created_at' => "2020-12-22 05:01:52"]);
-        $resultRedirect = $this->resultRedirectFactory->create();
+
         $this->inlineTranslation->suspend(); // stop inline translation
 
         if ($data) {
@@ -129,7 +132,9 @@ class Save extends Action
                             'store' => Store::DEFAULT_STORE_ID,
                         ]
                     )
-                    ->setTemplateVars(['data' => $postObj])
+                    ->setTemplateVars([
+                        'textData' => $model->getTextData(),
+                    ])
                     ->setFrom($sender)
                     ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
                     ->getTransport();
@@ -138,7 +143,7 @@ class Save extends Action
                 $this->inlineTranslation->resume(); //recovery inline translation
                 $this->messageManager->addSuccessMessage(__('Thanks for contacting us with your comments and questions.
                 We\'ll respond to you very soon.'));
-                $this->_redirect('*/*/');
+                $this->_redirect('*/*/main/');
                 return;
             }
             try {
