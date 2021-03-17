@@ -5,7 +5,6 @@ namespace Learning\UiFormTest\Block\Adminhtml\Button;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\UrlInterface;
-use Magento\Search\Controller\RegistryConstants;
 
 /**
  * Class GenericButton
@@ -38,17 +37,6 @@ class GenericButton
     ) {
         $this->urlBuilder = $context->getUrlBuilder();
         $this->registry = $registry;
-    }
-
-    /**
-     * Return the synonyms group Id.
-     *
-     * @return int|null
-     */
-    public function getId()
-    {
-        $contact = $this->registry->registry('contact');
-        return $contact ? $contact->getId() : null;
     }
 
     /**
