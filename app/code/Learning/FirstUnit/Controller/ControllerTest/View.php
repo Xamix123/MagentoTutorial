@@ -89,8 +89,12 @@ class View extends Action
 
     public function execute()
     {
+
         /* Task 1-5 get active product data*/
         //---------------------------------------TASK 1-----------------------------------------------//
+
+        echo 'only enabled products<br>';
+
         $this->searchCriteriaBuilder->addFilter(
             'name',
             '%test%',
@@ -103,6 +107,32 @@ class View extends Action
 
         foreach ($data as $item) {
             echo 'Sku: ' . $item->getSku() . ' -  Name: ' . $item->getName() . ' - Price: ' . $item->getPrice();
+            echo '<br>';
+        }
+
+        echo 'all products<br>';
+
+        $collection = $this->collectionFactory->create();
+
+        $collection->getSelect()->join(
+            ['catalog_product_entity_decimal' => $collection->getTable('catalog_product_entity_decimal')],
+            'e.entity_id = catalog_product_entity_decimal.entity_id',
+            ['price'=>'catalog_product_entity_decimal.value']
+        );
+
+        $collection->getSelect()->join(
+            ['eav_attribute' => $collection->getTable('eav_attribute')],
+            'e.entity_type_id = eav_attribute.entity_type_id',
+            ['attribute_id' => 'eav_attribute.attribute_id'],
+        )->where(
+            "eav_attribute.attribute_code = name"
+        );
+
+        $collectionData = $collection->getData();
+        var_export($collectionData);
+        die();
+        foreach ($collectionData as $item) {
+            echo 'Sku: ' . $item['sku'] . ' -  Name: ' . ' - Price: ' . $item['price'];
             echo '<br>';
         }
         //---------------------------------------TASK 1-----------------------------------------------//
