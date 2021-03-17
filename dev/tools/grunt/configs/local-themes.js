@@ -57,7 +57,8 @@ module.exports = {
         locale: 'en_US',
         files: [
             'css/styles-m',
-            'css/styles-l'
+            'css/styles-l',
+            'css/testGrunt'
         ],
         dsl: 'less'
     }
