@@ -113,47 +113,51 @@ class Save extends Action
 
         $this->inlineTranslation->suspend(); // stop inline translation
 
-        if ($data) {
-            $model = $this->uiFormTestFactory->create();
-            $model->setData($data);
+        try {
+            if ($data) {
+                $model = $this->uiFormTestFactory->create();
+                $model->setData($data);
 
-            if ((bool)$model->getStatus() == true) {
-                $sender = [
-                    'name' => 'It`s literally me',
-                    'email' => $this->_escaper->escapeHtml($model->getEmail())
-                ];
+                if ((bool)$model->getStatus() == true) {
+                    $sender = [
+                            'name' => $this->_escaper->escapeHtml($model->getEmail()),
+                            'email' => $this->_escaper->escapeHtml($model->getEmail())
+                        ];
 
-                $storeScope = ScopeInterface::SCOPE_STORE;
-                $transport = $this->_transportBuilder
-                    ->setTemplateIdentifier('send_email_email_template')
-                    ->setTemplateOptions(
-                        [
-                            'area' => Area::AREA_FRONTEND,
-                            'store' => Store::DEFAULT_STORE_ID,
-                        ]
-                    )
-                    ->setTemplateVars([
-                        'textData' => $model->getTextData(),
-                    ])
-                    ->setFrom($sender)
-                    ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
-                    ->getTransport();
+                    $storeScope = ScopeInterface::SCOPE_STORE;
+                    $transport = $this->_transportBuilder
+                            ->setTemplateIdentifier('send_email_email_template')
+                            ->setTemplateOptions(
+                                [
+                                    'area' => Area::AREA_FRONTEND,
+                                    'store' => Store::DEFAULT_STORE_ID,
+                                ]
+                            )
+                            ->setTemplateVars([
+                                'textData' => $model->getTextData() == null
+                                    ? "Default text message"
+                                    : $model->getTextData()
+                            ])
+                            ->setFromByScope($sender)
+                            ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
+                            ->getTransport();
 
-                $transport->sendMessage();
-                $this->inlineTranslation->resume(); //recovery inline translation
+                    $transport->sendMessage();
+                    $this->inlineTranslation->resume(); //recovery inline translation
+                }
+                $this->resourceModel->save($model);
                 $this->messageManager->addSuccessMessage(__('Thanks for contacting us with your comments and questions.
-                We\'ll respond to you very soon.'));
+                        We\'ll respond to you very soon.'));
                 $this->_redirect('*/*/main/');
                 return;
             }
-            try {
-                $this->resourceModel->save($model);
-            } catch (LocalizedException | RuntimeException $e) {
-                $this->messageManager->addError($e->getMessage()); // if catch exception show message
-            } catch (Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
-                // if catch exception show message
-            }
+        } catch (LocalizedException | RuntimeException $e) {
+            $this->messageManager->addExceptionMessage($e); // if catch exception show message
+        } catch (Exception $e) {
+            $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the data.'));
+            // if catch exception show message
         }
+        $this->_redirect('*/*/main/');
+        return;
     }
 }
