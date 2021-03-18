@@ -105,83 +105,79 @@ class View extends Action
 
         $data = $this->productRepository->getList($searchCriteria)->getItems();
 
-        foreach ($data as $item) {
-            echo 'Sku: ' . $item->getSku() . ' -  Name: ' . $item->getName() . ' - Price: ' . $item->getPrice();
-            echo '<br>';
-        }
+        $this->showData($data);
 
         echo 'all products<br>';
 
         $collection = $this->collectionFactory->create();
 
         $collection->getSelect()->join(
-            ['catalog_product_entity_decimal' => $collection->getTable('catalog_product_entity_decimal')],
-            'e.entity_id = catalog_product_entity_decimal.entity_id',
-            ['price'=>'catalog_product_entity_decimal.value']
-        );
+            ['cped' => $collection->getTable('catalog_product_entity_decimal')],
+            'e.entity_id = cped.entity_id',
+            ['price'=>'cped.value']
+        )->join(
+            ['eas' => $collection->getTable('eav_attribute_set')],
+            'e.attribute_set_id = eas.attribute_set_id',
+            []
+        )->join(
+            ['ea' => $collection->getTable('eav_attribute')],
+            'ea.entity_type_id = eas.entity_type_id',
+            []
+        )->join(
+            ['cpev'=>$collection->getTable('catalog_product_entity_varchar')],
+            'e.entity_id = cpev.entity_id and ea.attribute_id = cpev.attribute_id',
+            ['name' => 'cpev.value']
+        )->where('ea.attribute_code = "name" and cpev.value like "%test%"');
 
-        $collection->getSelect()->join(
-            ['eav_attribute' => $collection->getTable('eav_attribute')],
-            'e.entity_type_id = eav_attribute.entity_type_id',
-            ['attribute_id' => 'eav_attribute.attribute_id'],
-        )->where(
-            "eav_attribute.attribute_code = name"
-        );
+        $this->showData($collection);
 
-        $collectionData = $collection->getData();
-        var_export($collectionData);
-        die();
-        foreach ($collectionData as $item) {
-            echo 'Sku: ' . $item['sku'] . ' -  Name: ' . ' - Price: ' . $item['price'];
-            echo '<br>';
-        }
-        //---------------------------------------TASK 1-----------------------------------------------//
-        echo '________________________________________________________________________________________';
-        echo '<br>';
-        //additional work with search criteria
-        //---------------------------------------TASK 1 - * ------------------------------------------//
-
-        $filter1 = $this->filterBuilder->setField(ProductInterface::NAME)
-            ->setValue('%test%')
-            ->setConditionType('like')
-            ->create();
-
-        $this->filterGroupBuilder->setFilters([$filter1]);
-
-        $filterGroup1 = $this->filterGroupBuilder->create();
-
-        $filter2 = $this->filterBuilder->setField(ProductInterface::PRICE)
-            ->setValue(350)
-            ->setConditionType('lt')
-            ->create();
-
-        $this->filterGroupBuilder->setFilters([$filter2]);
-
-        $filterGroup2 = $this->filterGroupBuilder->create();
-
-        $this->searchCriteriaBuilder->setFilterGroups([$filterGroup1, $filterGroup2]);
-
-        $searchCriteria2 = $this->searchCriteriaBuilder->create();
-
-        $data = $this->productRepository->getList($searchCriteria2)->getItems();
-
-        foreach ($data as $item) {
-            echo 'Name: ' . $item->getName() . ' -> Price:' . $item->getPrice();
-            echo '<br>';
-        }
-        //--------------------------------------------------------------------------------------------//
-
-        /* Work with custom Repository*/
-        //---------------------------------------TASK 2-----------------------------------------------//
-//        $this->workWithCustomRepository();
-        //---------------------------------------TASK 2-----------------------------------------------//
-
-        echo '________________________________________________________________________________________';
-        echo '<br>';
-
-        //---------------------------------------TASK 3-----------------------------------------------//
-        $this->workWithLogger();
-        //--------------------------------------------------------------------------------------------//
+//        //---------------------------------------TASK 1-----------------------------------------------//
+//        echo '________________________________________________________________________________________';
+//        echo '<br>';
+//        //additional work with search criteria
+//        //---------------------------------------TASK 1 - * ------------------------------------------//
+//
+//        $filter1 = $this->filterBuilder->setField(ProductInterface::NAME)
+//            ->setValue('%test%')
+//            ->setConditionType('like')
+//            ->create();
+//
+//        $this->filterGroupBuilder->setFilters([$filter1]);
+//
+//        $filterGroup1 = $this->filterGroupBuilder->create();
+//
+//        $filter2 = $this->filterBuilder->setField(ProductInterface::PRICE)
+//            ->setValue(350)
+//            ->setConditionType('lt')
+//            ->create();
+//
+//        $this->filterGroupBuilder->setFilters([$filter2]);
+//
+//        $filterGroup2 = $this->filterGroupBuilder->create();
+//
+//        $this->searchCriteriaBuilder->setFilterGroups([$filterGroup1, $filterGroup2]);
+//
+//        $searchCriteria2 = $this->searchCriteriaBuilder->create();
+//
+//        $data = $this->productRepository->getList($searchCriteria2)->getItems();
+//
+//        foreach ($data as $item) {
+//            echo 'Name: ' . $item->getName() . ' -> Price:' . $item->getPrice();
+//            echo '<br>';
+//        }
+//        //--------------------------------------------------------------------------------------------//
+//
+//        /* Work with custom Repository*/
+//        //---------------------------------------TASK 2-----------------------------------------------//
+////        $this->workWithCustomRepository();
+//        //---------------------------------------TASK 2-----------------------------------------------//
+//
+//        echo '________________________________________________________________________________________';
+//        echo '<br>';
+//
+//        //---------------------------------------TASK 3-----------------------------------------------//
+//        $this->workWithLogger();
+//        //--------------------------------------------------------------------------------------------//
     }
 
     /**
@@ -258,5 +254,33 @@ class View extends Action
         $testData = $this->productRepository->get('abc');
 
         var_export($testData->getName());
+    }
+
+    /**
+     * @param $collection
+     */
+    public function showData($collection)
+    {
+        $status = is_array($collection);
+
+        $collectionData = $status ? $collection : $collection->getData();
+
+        echo '<table border="1">';
+        echo '<tr>';
+        echo '<td>№</td>';
+        echo '<td>Sku</td>';
+        echo '<td>Name</td>';
+        echo '<td>Price</td>';
+        echo '</tr>';
+        $counter = 1;
+        foreach ($collectionData as $item) {
+            echo '<tr>';
+            echo '<td>' . $counter++ . '</td>';
+            echo '<td>' . $item['sku'] . '</td>';
+            echo '<td>' . $item['name'] . '</td>';
+            echo '<td>' . $item['price'] . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
     }
 }
