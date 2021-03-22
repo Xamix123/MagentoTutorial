@@ -1,0 +1,14 @@
+<table>
+    <thead><tr>
+        <th>Passenger name</th><th>soname</th><th>Meal</th><th>Surcharge</th><th></th>
+    </tr></thead>
+    <tbody data-bind="foreach: seats">
+    <tr>
+        <td> <input data-bind="value: name"/></td>
+        <td> <input data-bind="value: soname"/></td>
+        <td data-bind="text: formattedPrice"></td>
+    </tr>
+    </tbody>
+</table>
+
+<button data-bind="click: addSeat">Add</button>

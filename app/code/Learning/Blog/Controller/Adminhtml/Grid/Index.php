@@ -15,7 +15,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 /**
- * Main page controller
+ * Main page Controller
  */
 class Index extends Action
 {

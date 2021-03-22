@@ -18,7 +18,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Registry;
 
 /**
- * Edit form controller
+ * Edit form Controller
  */
 class Edit extends Action
 {

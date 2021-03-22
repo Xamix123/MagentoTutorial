@@ -12,7 +12,7 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Ui\Component\MassAction\Filter;
 use Learning\Blog\Model\ResourceModel\Blog\CollectionFactory;
 /**
- * Mass status update controller
+ * Mass status update Controller
  */
 class MassStatus extends \Magento\Backend\App\Action
 {

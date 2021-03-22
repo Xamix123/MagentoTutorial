@@ -5,6 +5,7 @@ define([
     'use strict';
 
     return {
+        testData: {'test': 'alpha'},
         objectSetId: function (config, element) {
             var divName = '#';
 
