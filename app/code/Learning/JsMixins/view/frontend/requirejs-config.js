@@ -9,5 +9,11 @@ var config = {
                 'Learning_JsMixins/js/objectSetIdMixin': true
             }
         } // this is how js mixin is defined
+    },
+    map: {
+        '*': {
+            prototypeExample: 'Learning_JsMixins/js/prototypeExample',
+            myMatchMedia: 'Learning_JsMixins/js/myMatchMedia'
+        }
     }
 };
