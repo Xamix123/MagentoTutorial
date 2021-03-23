@@ -11,9 +11,9 @@ define([
             var td2 = $('#' + 'td2');
             var td3 = $('#' + 'td3');
 
-            td1.addClass('class1');
-            td2.addClass('class1');
-            td3.addClass('class1');
+            td1.addClass('td1');
+            td2.addClass('td2');
+            td3.addClass('td3');
         },
 
         exit: function () {
