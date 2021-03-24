@@ -7,6 +7,9 @@ var config = {
             },
             'Learning_Js/js/objectSetId' : {
                 'Learning_JsMixins/js/objectSetIdMixin': true
+            },
+            'Magento_Ui/js/modal/modal': {
+                'Learning_JsMixins/js/modal-widget-mixin': true
             }
         } // this is how js mixin is defined
     },
