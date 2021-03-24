@@ -23,6 +23,13 @@ class CarRepository implements CarRepositoryInterface
 
     private $searchResultsFactory;
 
+    /**
+     * CarRepository constructor.
+     * @param CarFactory $carFactory
+     * @param ResourceModelFactory $resourceCarFactory
+     * @param CarCollectionFactory $collectionFactory
+     * @param CarSearchResultsInterfaceFactory $searchResultsFactory
+     */
     public function __construct(
         CarFactory $carFactory,
         ResourceModelFactory $resourceCarFactory,

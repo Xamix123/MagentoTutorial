@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Learning\ClothingMaterial\Setup;
+namespace Learning\ClothingMaterial\Setup\Patch\Data;
 
 use Learning\ClothingMaterial\Model\Attribute\Source\CmsBlock;
 use Magento\Catalog\Model\Category;
@@ -15,23 +15,19 @@ use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
 
-/**
- * @codeCoverageIgnore
- */
-class AddCustomAttributes implements DataPatchInterface
+class AddCustomAttributes implements DataPatchInterface, PatchVersionInterface
 {
     const CUSTOM_PRODUCT_ATTRIBUTE_CODE = 'clothing_material';
     const CUSTOM_CATEGORY_ATTRIBUTE_CODE = 'test_category_attribute';
     const CUSTOM_CATEGORY_UI_ATTRIBUTE_CODE = 'test_customer_ui_attribute';
     const CUSTOM_CUSTOMER_ATTRIBUTE_CODE = 'test_customer_attribute';
 
-
     /**
      * @var ModuleDataSetupInterface
      */
     protected $moduleDataSetup;
-
 
     private $eavConfig;
 
@@ -58,6 +54,7 @@ class AddCustomAttributes implements DataPatchInterface
 
     public function apply()
     {
+        $this->moduleDataSetup->startSetup();
         $eavSetup = $this->eavSetupFactory->create();
         $eavSetup->addAttribute(
             Product::ENTITY,
@@ -105,7 +102,6 @@ class AddCustomAttributes implements DataPatchInterface
             ]
         );
 
-
         $eavSetup->addAttribute(
             Category::ENTITY,
             self::CUSTOM_CATEGORY_ATTRIBUTE_CODE,
@@ -131,6 +127,7 @@ class AddCustomAttributes implements DataPatchInterface
                 'label' => 'Ui Component test category attribute',
                 'input' => 'boolean',
                 'source'   => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+                'frontend' => 'Learning\ClothingMaterial\Model\Attribute\Frontend\Category',
                 'visible' => true,
                 'default' => '0',
                 'required' => false,
@@ -144,6 +141,8 @@ class AddCustomAttributes implements DataPatchInterface
             self::CUSTOM_CUSTOMER_ATTRIBUTE_CODE,
             [
                 'label' => 'Customer attribute',
+                'frontend' => 'Learning\ClothingMaterial\Model\Attribute\Frontend\Customer',
+                'default' => "",
                 'input' => 'text',
                 'visible' => true,
                 'required' => false,
@@ -164,20 +163,19 @@ class AddCustomAttributes implements DataPatchInterface
         );
 
         $customerAttribute->save();
+        $this->moduleDataSetup->endSetup();
     }
 
-
-    /**
-     * {@inheritdoc}
-     */
     public static function getDependencies()
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public static function getVersion()
+    {
+        return '1.0.1';
+    }
+
     public function getAliases()
     {
         return [];

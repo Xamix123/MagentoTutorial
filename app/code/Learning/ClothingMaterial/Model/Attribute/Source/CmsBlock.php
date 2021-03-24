@@ -63,7 +63,7 @@ class CmsBlock extends AbstractSource
             $list = $this->blockRepository->getList($searchCriteria);
             $items = $list->getItems();
 
-            $this->_options[] = ['label' => 'Chose Select Block', 'value'=> ''];
+            $this->_options[] = ['label' => 'Chose Cms Block', 'value'=> ''];
             foreach ($items as $item) {
                 $this->_options[] = [
                  'value' => $item->getId(),

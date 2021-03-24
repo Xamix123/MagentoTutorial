@@ -1,0 +1,20 @@
+<?php
+    /** @var \Learning\ClothingMaterial\Block\CategoryFront $block */
+    $collectionData = $block->getAdditionalData();
+
+?>
+
+<h1><?= $block->getTitle(); ?></h1>
+<table border="1">
+    <thead><tr><th>ID</th><th>Category Name</th><th>Label</th><th>Code</th><th>Value</th></tr></thead>
+    <tbody>
+    <?php foreach ($collectionData as $item) :?>
+        <tr>
+            <td><?= $item['id'] ?></td>
+            <td><?= $item['label']?></td>
+            <td><?= $item['code']?></td>
+            <td><?= $item['value']?></td>
+        </tr>
+    <?php endforeach;?>
+    </tbody>
+</table>
