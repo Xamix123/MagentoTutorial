@@ -13,7 +13,8 @@ class Customer extends AbstractFrontend
      */
     public function getValue(DataObject $object): string
     {
-        $value = $object->getData($this->getAttribute()->getAttributeCode());
+        $attributes = $this->getAttribute()->getCustomAttributes();
+        $value = $attributes['test_customer_attribute']->getValue();
         return "<b>$value</b>";
     }
 }
