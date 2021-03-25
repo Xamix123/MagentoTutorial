@@ -16,27 +16,24 @@ abstract class FrontendModelShow extends Template
 
     /**
      * @param $collection
-     * @param $entity
+     * @param $customData
      * @return array
      */
-    public function getAdditionalDataFromCollection($collection, $entity): array
+    public function getAdditionalDataFromCollection($collection, $customData): array
     {
         $data = [];
         $collectionData = $collection->getData();
 
         $code =  $collection->getAttribute(static::NAME_ATTRIBUTE)->getAttributeCode();
-        $value = $collection->getAttribute(static::NAME_ATTRIBUTE)->getFrontend()->getValue($entity);
         $label = $collection->getAttribute(static::NAME_ATTRIBUTE)->getDefaultFrontendLabel();
 
-        foreach ($collectionData as $item) {
+        foreach ($collectionData as $id => $item) {
             $data[] = [
                 'id' => $item['entity_id'],
-//                'name' => self::getName($item),
-//                'email' => $item['email'],
-                'label' => $label,
                 'code' => $code,
-                'value' => $value
+                'label' => $label
             ];
+            $data[$id] = array_merge($data[$id], $customData[$id]);
         }
         return $data;
     }
