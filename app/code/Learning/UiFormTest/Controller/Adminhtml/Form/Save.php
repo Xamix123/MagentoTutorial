@@ -3,7 +3,9 @@
 namespace Learning\UiFormTest\Controller\Adminhtml\Form;
 
 use Exception;
+use Learning\UiFormTest\Exception\FieldIsNotValidException;
 use Learning\UiFormTest\Model\ResourceModel\UiFormTest as ResourceModel;
+use Learning\UiFormTest\Model\UiFormTest;
 use Learning\UiFormTest\Model\UiFormTestFactory;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -13,8 +15,8 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\Template\TransportBuilder;
+use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Store\Model\ScopeInterface;
@@ -67,11 +69,22 @@ class Save extends Action
     private $resourceModel;
 
     /**
+     * @var DateTime
+     */
+    private $date;
+
+    /**
      * Index constructor.
      * @param Context $context
      * @param PageFactory $resultPageFactory
+     * @param StateInterface $inlineTranslation
+     * @param Escaper $escaper
+     * @param ScopeConfigInterface $scopeConfig
+     * @param TransportBuilder $transportBuilder
+     * @param StoreManagerInterface $storeManager
      * @param UiFormTestFactory $uiFormTestFactory
      * @param ResourceModel $resourceModel
+     * @param DateTime $date
      */
     public function __construct(
         Context $context,
@@ -82,7 +95,8 @@ class Save extends Action
         TransportBuilder $transportBuilder,
         StoreManagerInterface $storeManager,
         UiFormTestFactory $uiFormTestFactory,
-        ResourceModel $resourceModel
+        ResourceModel $resourceModel,
+        DateTime $date
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
@@ -93,23 +107,18 @@ class Save extends Action
         $this->storeManager = $storeManager;
         $this->uiFormTestFactory = $uiFormTestFactory;
         $this->resourceModel = $resourceModel;
-    }
-
-    public function _constructor()
-    {
-        date_default_timezone_set('Europa/Kiev');
+        $this->date = $date;
     }
 
     /**
      * @return ResponseInterface|ResultInterface|void
-     * @throws LocalizedException
-     * @throws MailException
      */
     public function execute()
     {
         $postObj = $this->getRequest()->getPostValue();
 
-        $data = array_merge($postObj['sample_fieldset'], ['created_at' => "2020-12-22 05:01:52"]);
+        $date = $this->date->gmtDate();
+        $data = array_merge($postObj['sample_fieldset'], ['created_at' => $date]);
 
         $this->inlineTranslation->suspend(); // stop inline translation
 
@@ -118,7 +127,9 @@ class Save extends Action
                 $model = $this->uiFormTestFactory->create();
                 $model->setData($data);
 
-                if ((bool)$model->getStatus() == true) {
+                $this->resourceModel->save($model);
+
+                if (UiFormTest::STATUSES[$model->getStatus()] === true) {
                     $sender = [
                             'name' => $this->_escaper->escapeHtml($model->getEmail()),
                             'email' => $this->_escaper->escapeHtml($model->getEmail())
@@ -134,9 +145,15 @@ class Save extends Action
                                 ]
                             )
                             ->setTemplateVars([
-                                'textData' => $model->getTextData() == null
+                                'textData' => $model->getTextData() === null
                                     ? "Default text message"
-                                    : $model->getTextData()
+                                    : $model->getTextData(),
+                                'email' => $model->getEmail() === null
+                                    ? "Default mail"
+                                    : $model->getEmail(),
+                                'created_at' => $model->getCreatedAt() === null
+                                    ? "Undefined time"
+                                    : $model->getCreatedAt()
                             ])
                             ->setFromByScope($sender)
                             ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
@@ -145,13 +162,13 @@ class Save extends Action
                     $transport->sendMessage();
                     $this->inlineTranslation->resume(); //recovery inline translation
                 }
-                $this->resourceModel->save($model);
+
                 $this->messageManager->addSuccessMessage(__('Thanks for contacting us with your comments and questions.
                         We\'ll respond to you very soon.'));
                 $this->_redirect('*/*/main/');
                 return;
             }
-        } catch (LocalizedException | RuntimeException $e) {
+        } catch (FieldIsNotValidException | LocalizedException | RuntimeException $e) {
             $this->messageManager->addExceptionMessage($e); // if catch exception show message
         } catch (Exception $e) {
             $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the data.'));

@@ -1,16 +1,25 @@
 body {
-    background: #0A246A;
+    background: lightblue;
 }
 
-p {
-    color: #FFFFFF;
+.p-text{
     font-family: 'Redressed', cursive;
     font-size: large;
 }
 
-h1 {
-    color: #FFFFFF;
+.p-email{
+    text-align: right;
+    font-size: small;
     font-family: 'Redressed', cursive;
+}
+
+.container{
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Redressed', cursive;
+    text-align: center;
 }
 
 table {

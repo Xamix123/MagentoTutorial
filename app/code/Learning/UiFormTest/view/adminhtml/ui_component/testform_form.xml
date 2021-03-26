@@ -91,9 +91,9 @@
 
         <field name="status" formElement="checkbox">
             <settings>
-                <label translate="true">Enabled</label>
+                <label translate="true">Send Email</label>
                 <tooltip>
-                    <description translate="true">test checkbox description</description>
+                    <description translate="true">If you selected this field letter will be sended</description>
                 </tooltip>
             </settings>
             <formElements>
