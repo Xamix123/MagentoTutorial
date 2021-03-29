@@ -251,6 +251,7 @@ return [
         'Learning_Js' => 1,
         'Learning_JsMixins' => 1,
         'Learning_ScriptsLearning' => 1,
+        'Learning_TestTask' => 1,
         'MSP_Common' => 1,
         'MSP_DevTools' => 1,
         'Magento_PaypalReCaptcha' => 1,

@@ -1,0 +1,13 @@
+<?php
+    /** @var StatusForm $block */
+
+use Learning\TestTask\Block\StatusForm;
+
+?>
+
+<form action="<?php echo $this->getUrl("testtask/status/save")?>" method="post" autocomplete="off">
+    <label for="status">Status:</label>
+    <input type="text" name="status" id="status" value="<?php ?>"/>
+    <button href="customer/account/"> Back</button>
+    <button href="testtask/status/save" type="submit">Save</button>
+</form>

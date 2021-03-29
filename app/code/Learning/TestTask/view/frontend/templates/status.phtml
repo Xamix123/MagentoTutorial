@@ -1,0 +1,7 @@
+<?php
+
+$customerId = $this->customerSession->getCustomerId();
+$customerData = $this->customerRepository->getById($customerId);
+$status = $customerData->getCustomAttribute("customer_status_attribute_custom");
+
+echo $status;
